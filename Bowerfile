@@ -3,3 +3,6 @@
 
 # asset 'bootstrap'
 asset 'normalize.css'
+asset 'scrollReveal.js'
+asset 'bourbon'
+asset 'neat'

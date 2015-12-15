@@ -1,0 +1,96 @@
+@import url(normalize.css/normalize.css);
+/* line 9, /home/QB/app/assets/stylesheets/static_pages.scss */
+body {
+  position: relative;
+  background-color: black;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+
+/* line 18, /home/QB/app/assets/stylesheets/static_pages.scss */
+section {
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100%;
+}
+
+/* line 26, /home/QB/app/assets/stylesheets/static_pages.scss */
+.fondo {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url(/assets/bg-c72f7c4c13124283dfb5b5b12993fc56d49d6936b8961b057c575d6e11b53205.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+/* line 38, /home/QB/app/assets/stylesheets/static_pages.scss */
+.logo {
+  background-image: url(/assets/logo-07db1c5f58a0d9bbca19eacdeeffcfc164c97eb6fb1346f6c7ad44789955d241.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 200px;
+  width: 100%;
+}
+
+/* line 48, /home/QB/app/assets/stylesheets/static_pages.scss */
+.centrado-vertical {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* line 57, /home/QB/app/assets/stylesheets/static_pages.scss */
+.centrado-horizontal {
+  margin: 0 auto;
+  background-color: transparent;
+  width: 60%;
+  height: auto;
+}
+
+/* line 65, /home/QB/app/assets/stylesheets/static_pages.scss */
+h1 {
+  font-weight: 400;
+  font-size: 22px;
+  padding-top: 20px;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+/* line 75, /home/QB/app/assets/stylesheets/static_pages.scss */
+h2 {
+  text-align: center;
+  margin: 0;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+}
+/* line 83, /home/QB/app/assets/stylesheets/static_pages.scss */
+h2 a {
+  text-decoration: none;
+  color: aqua;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+

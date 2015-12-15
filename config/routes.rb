@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
   root 'static_pages#home'
 
-  get '/envianos' => 'static_pages#envianos'
+  get 'envianos' => 'static_pages#envianos'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,47 +1,137 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-@import "normalize.css/normalize.css";
-//@import "morphed-skeleton";
+@import "normalize.css/normalize";
+@import "bourbon/app/assets/stylesheets/bourbon";
+@import "neat/app/assets/stylesheets/neat";
 
 
-
-div.space
-{
-  height: 300vh;
-}
+//=================================
+//-*****    Impresión 3d
+//=================================
 
 section
 {
-
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  //bottom: 0px;
-
-  &.imagina
-  {
-    background-color: red;
-
-  }  
-
-  &.envianos
-  {
-    height: 0px;
-    background-color: green;
-  }  
-
-  &.recibe
-  {
-    height: 0px;
-    background-color: orange;
-  }
+  $number-width: 80px;
   
-  .titulo
+  //Para casos específicos de sección
+  &#imagina
   {
-    
+    .fixed { background-color: red; }
+    .image { background-color: pink; }
   }
 
+  &#envianos
+  {
+    .fixed { background-color: tomato; }
+    .image { background-color: gray; }
+    .step-number {
+      left: 80%;
+      top: 20%;
+      margin-left: -($number-width/2 - 12);
+    }
+    .title { text-align: right }
+    .description {text-align: left}
+    .subtitle { text-align: right}
+    .extra {text-align: left}
+  }
+
+  &#recibe
+  {
+    .fixed { background-color: pink; }
+    .image { background-color: purple; }
+  }
+
+  // EN GENERAL PARA TODOS...
+  &.parallax-peel-container {
+    position: relative;
+    width: 100%;
+
+    height: 100vh;
+    min-height: 600px;
+  }
+
+  .scrollable {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, auto, auto, 0);
+
+  }
+
+  .fixed 
+  {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+
+  }
+
+  .image
+  {  
+    position: absolute;
+    height: 83%;
+    width: 60%;
+    top: 53%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+    box-shadow: 0px 4px 15px black;
+  }
+
+  .step-number
+  {
+    position:absolute;
+    $number-height: 80px;
+    height: $number-height;
+    width: $number-width;
+    left: 20%;
+    top: 20%;
+    margin-left: -($number-width/2 + 12);
+
+    text-align: center;
+    font-size: 80px;
+    font-weight: 600;
+    line-height: $number-height;
+
+    background-color: black;
+    color: white;
+  }
+
+  .grid
+  { 
+    position:relative;
+      top: 15%;
+      //background-color:green;
+      margin: 0 auto;
+      width: 80%;
+  }
+    .description
+    {
+      text-align: right;
+      background-color:skyblue;
+    }
+
+    .title
+    {
+      margin-top:120px;
+      background-color:aqua;
+    }
+
+    .subtitle
+    {
+      background-color:yellow;
+    }
+
+    .extra
+    {
+        margin-top:180px;
+        text-align: right;
+        background-color:orange;
+    }
 }
+
+
+
+

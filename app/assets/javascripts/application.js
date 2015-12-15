@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require scrollReveal.js/dist/scrollReveal
 //= require_tree .
