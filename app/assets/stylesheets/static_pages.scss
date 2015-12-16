@@ -32,6 +32,7 @@ section
   {
     .fixed { background-color: $blue-c; }
     .image { background-color: pink; }
+    .step-number { color: $aqua-c; }
     .subtitle { font-size: 2.5em;
                 color: $aqua-c; }
     .description { font-size: 1.4em; }
@@ -42,6 +43,7 @@ section
     .fixed { background-color: $green-c; }
     .image { background-color: gray; }
     .step-number {
+      color: $greenlight-c;
       left: 80%;
       top: 20%;
       margin-left: -($number-width/2 - 12);
@@ -59,6 +61,7 @@ section
   {
     .fixed { background-color: $golden-c; }
     .image { background-color: purple; }
+    .step-number { color: $darkyellow-c; }
     .subtitle { font-size: 2.5em;
                 color: $darkyellow-c; }
     .description { font-size: 1.4em; }
@@ -140,7 +143,7 @@ section
 
     .title
     {
-      margin-top:100px;
+      margin-top:55px;
       font-size: 4em;
       background-color:aqua;
     }
@@ -152,7 +155,7 @@ section
 
     .extra
     {
-        margin-top:140px;
+        margin-top:100px;
         text-align: right;
         background-color:orange;
     }
