@@ -7,6 +7,25 @@
 //-*****    Impresión 3d
 //=================================
 
+// Colors
+$blue-c: #3859A7;
+$aqua-c: #51DBC3;
+$green-c: #3CAB67;
+$greenlight-c: #95FF4D;
+$golden-c: #D6952C;
+$darkyellow-c: #F1E83E;
+$yellow-c: #FEE640;
+
+
+body {
+  //font-size: 1.2em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  //line-height: 1.2em;
+  //background-color: $text-dark-c;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+
 section
 {
   $number-width: 80px;
@@ -14,13 +33,14 @@ section
   //Para casos específicos de sección
   &#imagina
   {
-    .fixed { background-color: red; }
+    .fixed { background-color: $blue-c; }
     .image { background-color: pink; }
+    .subtitle { color: $aqua-c;}
   }
 
   &#envianos
   {
-    .fixed { background-color: tomato; }
+    .fixed { background-color: $green-c; }
     .image { background-color: gray; }
     .step-number {
       left: 80%;
@@ -29,14 +49,17 @@ section
     }
     .title { text-align: right }
     .description {text-align: left}
-    .subtitle { text-align: right}
+    .subtitle { text-align: right;
+                color: $greenlight-c;
+              }
     .extra {text-align: left}
   }
 
   &#recibe
   {
-    .fixed { background-color: pink; }
+    .fixed { background-color: $golden-c; }
     .image { background-color: purple; }
+    .subtitle { color: $darkyellow-c; }
   }
 
   // EN GENERAL PARA TODOS...
