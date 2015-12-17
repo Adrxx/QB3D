@@ -38,6 +38,7 @@ section
     .subtitle { font-size: 2.5em;
                 color: $aqua-c; }
     .description { font-size: 1.4em; }
+    .color_word { color: $aqua-c; }
   }
 
   &#envianos
@@ -52,13 +53,14 @@ section
     }
     .title { text-align: right; }
     .description { text-align: left;
-                    font-size: 1.7m; }
+                    font-size: 1.3em; }
     .subtitle { text-align: right;
                 font-size: 2.0em;
                 color: $greenlight-c;
               }
     .extra { text-align: left;
               color: $darkgreen-c; }
+    .color_word { color: $greenlight-c; }
   }
 
   &#recibe
@@ -70,6 +72,7 @@ section
                 color: $darkyellow-c; }
     .description { font-size: 1.4em; }
     .extra { color: gray-c;}
+    .color_word { color: $darkyellow-c; }
   }
 
   // EN GENERAL PARA TODOS...
@@ -160,7 +163,7 @@ section
 
     .extra
     {
-        margin-top:100px;
+        margin-top:70px;
         font-size: 1.3em;
         text-align: right;
         //background-color:orange;
