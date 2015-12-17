@@ -12,9 +12,11 @@ $blue-c: #3859A7;
 $aqua-c: #51DBC3;
 $green-c: #3CAB67;
 $greenlight-c: #95FF4D;
+$darkgreen-c: #498039;
 $golden-c: #D6952C;
 $darkyellow-c: #F1E83E;
 $yellow-c: #FEE640;
+$gray-c: #393939;
 
 
 body {
@@ -49,12 +51,14 @@ section
       margin-left: -($number-width/2 - 12);
     }
     .title { text-align: right; }
-    .description { text-align: left; }
+    .description { text-align: left;
+                    font-size: 1.7m; }
     .subtitle { text-align: right;
                 font-size: 2.0em;
                 color: $greenlight-c;
               }
-    .extra { text-align: left; }
+    .extra { text-align: left;
+              color: $darkgreen-c; }
   }
 
   &#recibe
@@ -65,6 +69,7 @@ section
     .subtitle { font-size: 2.5em;
                 color: $darkyellow-c; }
     .description { font-size: 1.4em; }
+    .extra { color: gray-c;}
   }
 
   // EN GENERAL PARA TODOS...
@@ -123,7 +128,7 @@ section
     font-weight: 600;
     line-height: $number-height;
 
-    background-color: black;
+    //background-color: black;
     color: white;
   }
 
@@ -138,26 +143,27 @@ section
     .description
     {
       text-align: right;
-      background-color:skyblue;
+      //background-color:skyblue;
     }
 
     .title
     {
       margin-top:55px;
       font-size: 4em;
-      background-color:aqua;
+      //background-color:aqua;
     }
 
     .subtitle
     {
-      background-color:yellow;
+      //background-color:yellow;
     }
 
     .extra
     {
         margin-top:100px;
+        font-size: 1.3em;
         text-align: right;
-        background-color:orange;
+        //background-color:orange;
     }
 }
 
