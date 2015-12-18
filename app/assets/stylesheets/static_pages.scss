@@ -18,6 +18,12 @@ $darkyellow-c: #F1E83E;
 $yellow-c: #FEE640;
 $gray-c: #393939;
 
+// Box Colors
+$green-box-c: #77E854;
+$yellow-box-c: #EFD037;
+
+$transparency:0.13;
+
 
 body {
   font-weight: 400;
@@ -52,14 +58,21 @@ section
       margin-left: -($number-width/2 - 12);
     }
     .title { text-align: right; }
-    .description { text-align: left;
+    .description { //text-align: left;
+                    float: left;
+                    text-align: right;
+
                     font-size: 1.3em; }
     .subtitle { text-align: right;
                 font-size: 2.0em;
                 color: $greenlight-c;
               }
-    .extra { text-align: left;
-              color: $darkgreen-c; }
+    .extra { float: left;
+              color: $darkgreen-c; 
+            }
+    .boxcolor{ height: 100px;
+              width: 300px;
+              background-color: transparentize($green-box-c , 0.25); }
     .color_word { color: $greenlight-c; }
   }
 
@@ -71,7 +84,15 @@ section
     .subtitle { font-size: 2.5em;
                 color: $darkyellow-c; }
     .description { font-size: 1.4em; }
-    .extra { color: gray-c;}
+    .extra { //text-align: right;
+            float: right;
+            color: gray-c; }
+    .boxcolor{ height: 180px;
+              width: 300px;
+              color: $gray-c;
+              background-color: transparentize($yellow-box-c, 0.25);
+              line-height: 30px;
+              }
     .color_word { color: $darkyellow-c; }
   }
 
@@ -167,6 +188,11 @@ section
         font-size: 1.3em;
         text-align: right;
         //background-color:orange;
+    }
+
+    .boxcolor 
+    {
+      text-align: center;
     }
 }
 
