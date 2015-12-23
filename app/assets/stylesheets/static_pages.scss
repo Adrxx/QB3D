@@ -59,9 +59,8 @@ section
     }
     .title { text-align: right; }
     .description { //text-align: left;
-                    float: left;
-                    text-align: right;
-
+                    text-align: left;
+                    
                     font-size: 1.3em; }
     .subtitle { text-align: right;
                 font-size: 2.0em;
@@ -70,8 +69,9 @@ section
     .extra { float: left;
               color: $darkgreen-c; 
             }
-    .boxcolor{ height: 100px;
-              width: 300px;
+    .boxcolor{ 
+      display: inline-block;
+            padding: 40px;
               background-color: transparentize($green-box-c , 0.25); }
     .color_word { color: $greenlight-c; }
   }
@@ -97,7 +97,8 @@ section
   }
 
   // EN GENERAL PARA TODOS...
-  &.parallax-peel-container {
+  &.parallax-peel-container 
+  {
     position: relative;
     width: 100%;
 
@@ -105,7 +106,8 @@ section
     min-height: 600px;
   }
 
-  .scrollable {
+  .scrollable 
+  {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -159,10 +161,10 @@ section
   .grid
   { 
     position:relative;
-      top: 15%;
+    top: 15%;
       //background-color:green;
-      margin: 0 auto;
-      width: 80%;
+    margin: 0 auto;
+    width: 80%;
   }
     .description
     {
@@ -198,4 +200,33 @@ section
 
 
 
+//=================================
+//-*****    Impresión 3d
+//=================================
+
+#DMAT
+{
+  position:absolute;
+  z-index: 20;
+  top: 300px;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  box-shadow: 0px 1px 20px transparentize(black, 0.5);
+  @include transform(skewY(-25deg));
+
+  background-color:red;
+
+}
+
+#posibilidades
+{
+  background-color: green;
+}
+
+#tienda
+{
+  background-color: blue;
+  height: 200vh;
+}
 

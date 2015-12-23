@@ -3,6 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
   
 $(document).on 'ready', ->
-  console.log 'asds'
   window.sr = new scrollReveal();
-  console.log 'asds'
