@@ -2,11 +2,6 @@
 @import "bourbon/app/assets/stylesheets/bourbon";
 @import "neat/app/assets/stylesheets/neat";
 
-
-//=================================
-//-*****    Impresión 3d
-//=================================
-
 // Colors
 $blue-c: #3859A7;
 $aqua-c: #51DBC3;
@@ -29,7 +24,70 @@ body {
   font-weight: 400;
   font-family: 'Lato', sans-serif;
   color: white;
+  background-color: black;
 }
+
+@mixin main-button-style($color) {
+  text-decoration: none;
+
+  padding: 6px 20px;
+  border: solid 2px $color;
+  color:  $color;
+
+  display: inline-block;
+
+  @include transition-duration(0.3s);
+  @include transition-property(all);
+
+}
+
+
+//=================================
+//-*****    Menú
+//=================================
+
+
+nav.main-nav
+{
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(center);
+
+  position:fixed;
+  background-color:transparentize(white, 0.8);
+  width: 100%;
+  height: 65px;
+  z-index: 100;
+
+  a
+  {
+    margin: 0 20px;
+    //background-color: blue;
+  }
+
+  .logo
+  {
+    //background-color:orange;
+    background-image: image-url("logo.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 40px;
+    @include transition-property(transform);
+    @include transition-duration(0.15s);
+    @include transition-timing-function(ease-in);
+
+    &:hover
+    {
+      @include transform(rotate(60deg));
+    }
+  }
+}
+
+//=================================
+//-*****    Impresión 3d
+//=================================
 
 section
 {
@@ -39,7 +97,10 @@ section
   &#imagina
   {
     .fixed { background-color: $blue-c; }
-    .image { background-color: pink; }
+    .image { 
+      background-image: image-url("imagina.png");
+      background-color: $blue-c;
+     }
     .step-number { color: $aqua-c; }
     .subtitle { font-size: 2.5em;
                 color: $aqua-c; }
@@ -50,7 +111,7 @@ section
   &#envianos
   {
     .fixed { background-color: $green-c; }
-    .image { background-color: gray; }
+    .image { background-image: image-url("envianos.png"); }
     .step-number {
       color: $greenlight-c;
       left: 80%;
@@ -79,19 +140,29 @@ section
   &#recibe
   {
     .fixed { background-color: $golden-c; }
-    .image { background-color: purple; }
+    .image { background-image: image-url("recibe.png"); }
     .step-number { color: $darkyellow-c; }
     .subtitle { font-size: 2.5em;
                 color: $darkyellow-c; }
-    .description { font-size: 1.4em; }
+    .description 
+    { 
+      font-size: 1.4em; 
+
+      a {
+        font-size: 0.8em;
+        @include main-button-style($darkyellow-c);
+        margin-top: 20px;
+      }
+    }
     .extra { //text-align: right;
             float: right;
             color: gray-c; }
-    .boxcolor{ height: 180px;
-              width: 300px;
+    .boxcolor{ 
+      display: inline-block;
+            padding: 30px;
+      font-size: 0.8em;
               color: $gray-c;
               background-color: transparentize($yellow-box-c, 0.25);
-              line-height: 30px;
               }
     .color_word { color: $darkyellow-c; }
   }
@@ -103,7 +174,7 @@ section
     width: 100%;
 
     height: 100vh;
-    min-height: 600px;
+    min-height: 750px;
   }
 
   .scrollable 
@@ -137,6 +208,9 @@ section
     left: 50%;
     @include transform(translate(-50%, -50%));
     box-shadow: 0px 4px 15px black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .step-number
@@ -186,7 +260,7 @@ section
 
     .extra
     {
-        margin-top:70px;
+        margin-top:40px;
         font-size: 1.3em;
         text-align: right;
         //background-color:orange;
@@ -195,38 +269,148 @@ section
     .boxcolor 
     {
       text-align: center;
+
+      span
+      {
+        font-weight: 600;
+        &:after
+        {
+          content: '';
+          display: block;
+          position: relative;
+          height: 1px;
+          margin: 17px 0;
+          left: 50%;
+          width: 160px;
+          margin-left: -80px;
+          background-color: black;
+          @include transition-duration(0.9s);
+          @include transition-property(all);
+          //@include transition-delay(0.2s);
+        }
+      }
     }
 }
 
 
 
 //=================================
-//-*****    Impresión 3d
+//-*****    Para ti
 //=================================
 
 #DMAT
 {
   position:absolute;
   z-index: 20;
-  top: 300px;
   width: 100%;
   height: 100vh;
-  min-height: 600px;
-  box-shadow: 0px 1px 20px transparentize(black, 0.5);
-  @include transform(skewY(-25deg));
+  
+  //background-color:tomato;
 
-  background-color:red;
+  .skewed-background
+  {
+    position:absolute;
+    top: 300px;
+    width: 100%;
+    height: 1000px;
+    min-height: 600px;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+    @include transform(skewY(-30deg));
+    background-color:red;
+  }
+
+  .title
+  {
+    margin: 0px;
+  }
+
+  .description
+  {
+
+  }
+
+  .block
+  {
+    position:relative;
+    background-color:purple;
+    display: inline-block;
+
+    float: right;
+    clear: both;
+    top: 450px;
+    margin-bottom: 140px;
+
+    &:nth-child(2)
+    {
+      right: 10%;
+      background-color:blue;
+    }
+    &:nth-child(3)
+    {
+      right: 50%;
+      background-color:blue;
+    }
+    &:nth-child(4)
+    {
+      right: 30%;
+      background-color:blue;
+    }
+    &:nth-child(5)
+    {
+      right: 60%;
+      background-color:blue;
+    }
+
+  }
+
 
 }
 
 #posibilidades
 {
   background-color: green;
+  .text 
+  {
+    display: inline-block;
+    position:relative;
+    top:25%;
+    margin-left: 30px;
+    background-color: cyan;
+    text-align: right;
+  }
 }
 
 #tienda
 {
   background-color: blue;
   height: 200vh;
+  min-height: 1800px;
+  .text
+  {
+    display: inline-block;
+    position:relative;
+    top:25%;
+    float:right;
+    margin-right: 30px;
+    text-align: left;
+    background-color:purple;
+
+  }
+}
+
+#contactanos
+{
+  background-color: green;
+  .text
+  {
+    display: inline-block;
+    position:relative;
+    top:25%;
+    margin-left: 30px;
+    text-align: left;
+    background-color: orange;
+
+  }
 }
 
