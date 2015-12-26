@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
 
-  get 'envianos' => 'static_pages#envianos'
-  get 'para-ti' => 'static_pages#parati'
+
+  resources :materials, path: 'admin/materials', except: :show, path_names: { new: 'nuevo', edit: 'editar' }, module: 'c4'
+
+  resources :announcements, path: 'admin/announcements', except: :show, path_names: { new: 'nuevo', edit: 'editar' }, module: 'c4'
+
+  mount C4::Engine => "/admin"
+
+  root 'static_pages#envianos'
+
+  post '/enviar_contacto' => 'static_pages#enviar_contacto', as: 'enviar_contacto'
+
+  get 'como-funciona' => 'static_pages#envianos', as: 'envianos'
+
+  get 'enviar-diseno' => 'static_pages#fabnami', as: 'fabnami'
+
+  get 'para-ti' => 'static_pages#parati', as: 'parati'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

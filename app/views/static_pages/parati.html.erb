@@ -1,23 +1,23 @@
 <!-- Diseñadores, Makers, Artistas, Todos -->
 <section id="DMAT">
   <div class="skewed-background"></div>
-  <div class="block">
+  <div class="block" data-sr="reset">
     <div class="title">Diseñadores</div>
     <div class="description">Imprime prototipos y crea los <br>mejores productos.</div>
   </div>
-  <div class="block">
+  <div class="block" data-sr="reset">
     <div class="title">Makers</div>
     <div class="description">
       ¿No existe la pieza que <br>necesitas? Imprímela en 3D.
       </div>
   </div>
-  <div class="block">
+  <div class="block" data-sr="reset">
     <div class="title">Artistas</div>
     <div class="description">
       Imprime prototipos y crea los <br>mejores productos.
     </div>
   </div>
-  <div class="block">
+  <div class="block" data-sr="reset">
     <div class="title">Todos</div>
     <div class="description">
       Imprime regalos personalizados, juguetes, <br>
@@ -25,34 +25,68 @@
     </div>
   </div>
 </section>
-<!-- posibilidades -->
+<!-- Posibilidades -->
 <section id="posibilidades" class="parallax-peel-container">
   <div class="scrollable">
     <div class="fixed">
-      <div class="text">
+      <div class="text" data-sr="reset">
         Con <span class="color_word">QBD3</span>, las<br> posibilidades son<span class="color_word"><br>ilimitadas</span>
       </div>
     </div>
   </div>
 </section>
-<!-- Imagina -->
+<!-- Tienda -->
 <section id="tienda" class="parallax-peel-container">
   <div class="scrollable">
     <div class="fixed">
-    <div class="text">
+      <div class="text">
         <span>Tienda 3D</span><br> Descubre nuevos productos, nuevas <br>soluciones y los mejores regalos.
+        <br>
+         <%= link_to 'Ir a la Tienda', url_for("http://tienda.qb3d.com.mx"),class:'button' %>
+      </div>
+      <div class="categories">
+        <div class="category">
+          <div class="name">Holas</div>
+        </div>
+      </div>
+    </div>
+    <div class="announcements">
+      <div class="shape"></div>
+      <div class="announcement">
+        <% @announcements.each do |announcement| %>
+          <% if announcement.featured %>
+            <div class="title"><%= announcement.title %></div>
+            <div class="date"><%= announcement.created_at.strftime('%d/%m/%Y')%></div>
+            <%= announcement.description %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
-<!-- Imagina -->
+<!-- Contacto -->
 <section id="contactanos" class="parallax-peel-container">
   <div class="scrollable">
+
     <div class="fixed">
       <div class="text">
         <span>Contáctanos</span><br>Comparte con nosotros tus ideas más<br>frescas, envíanos un saludo o déjanos <br>resolver tus dudas.
       </div>
     </div>
+    <div class="contact-info">
+      <div class="shape"></div>
+      <div class="square">
+        <div class="field"></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="shape"></div>
+      <div class="square">
+        <%= render "contacto" %>
+      </div>
+    </div>
+
+    <div class="shadow"></div>
   </div>
 </section>
 

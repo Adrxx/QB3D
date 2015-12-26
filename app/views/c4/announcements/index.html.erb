@@ -1,0 +1,55 @@
+<%= content_for :title, "Announcements" %>
+
+<% content_for :header_content do %>
+<h1><strong>Announcements</strong></h1>
+<% end %>
+
+<%= link_to main_app.new_announcement_path, class: 'c4-button-success' do %>
+  Agregar nuevo
+<% end %>
+<div class="c4-list-collection">
+  <% if @announcements.empty? %>
+    <div class="no-content">
+      <span class="icon-error"></span>
+      <div>Sin contenido</div>
+    </div>
+  <% end %>
+  <% @announcements.each do |announcement| %>
+  <div class="c4-list-cell">
+    <div class="row top-row">
+      <div class="nine columns">
+        <div class="title">
+         <%= '<span class="icon-view_carousel"></span>'.html_safe if announcement.featured %>
+          <%= announcement.title %>
+        </div>
+      </div>
+      <div class="three columns">
+        <div class="date">
+          <%= announcement.created_at.strftime('%d/%m/%Y') %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!--
+      <div class="four columns">
+        <div class="thumbnail" style="background-image: url(<%#= photo_if_exists(announcement) %>)"></div>
+      </div>
+      -->
+      <div class="twelve columns">
+        <div class="description">
+          <%= announcement.description %>
+        </div>
+        <div class="row buttons-container">
+        <%= link_to main_app.edit_announcement_path(announcement), class:'c4-button-primary' do %>
+          <span class="icon-edit"></span>
+        <% end %>
+          <%= link_to main_app.announcement_path(announcement), method: :delete, data: { confirm: 'Esta acción no puede deshacerse. ¿Está seguro que desea borrar este elemento?'}, class:'c4-button-warning' do %>
+            <span class="icon-delete"></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+

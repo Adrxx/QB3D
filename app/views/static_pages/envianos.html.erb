@@ -14,9 +14,10 @@
       <div data-sr="reset" class="title">Imagina y Diseña</div>
       <div data-sr="reset" class="subtitle">Las posibilidades son <br>infinitas.</div>
       <div data-sr="reset" class="extra">
-        ¿No eres diseñador? No te preocupes, <br> 
-        podemos ayudarte a <span class="color_word">encontrarlo</span> o puedes <br> 
-        ver nuestro <span class="color_word">catálogo</span>.
+        ¿No eres diseñador? <br> No te preocupes, <!-- <br> 
+        podemos ayudarte a <span class="color_word">encontrarlo</span> o  -->puedes <br> 
+        ver nuestro <%= link_to 'catálogo', url_for("http://tienda.qb3d.com.mx"), class:'color_word'  %>
+.
       </div>
     </div>
   </div>
@@ -36,15 +37,23 @@
       </div>
       <div data-sr="reset" class="title">Envíanos tu <br>diseño.</div>
       <div data-sr="reset" class="subtitle">Déjanos hacerlo realidad.</div>
-      <div data-sr="reset" class="extra">
-        <div class="boxcolor">
-          Sección opciones.<br>
-          (Materiales, calidades, <br>
-          acabados, colores, etc.)
-        </div> 
-      </div>
     </div>
   </div>
+  <div class="materials">
+    <% @materials.each do |m| %>
+      <% if m.available %>
+      <div class="row">
+        <%= m.name %> <span><%= m.price %></span>
+        <div class="colors">
+          <% m.colors.each do |c| %>
+            <div style="background-color:#<%= c.hex %>"></div>
+          <% end %>
+        </div>   
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+
 </section>
 <!-- Recibe -->
 <section id="recibe" class="parallax-peel-container">
@@ -57,7 +66,8 @@
       <div data-sr="reset" class="description">
         Recíbelo en tu casa o <br>
         <span class="color_word">universidad.</span> <br>
-        <a href="">Enviar diseño</a>
+        <%= link_to 'Enviar diseño', fabnami_path %>
+
       </div>
       <div data-sr="reset" class="title">Recibe tu <br> impresión.</div>
       <div data-sr="reset" class="subtitle">Vamos a donde estés.</div>

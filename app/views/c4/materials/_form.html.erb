@@ -1,0 +1,65 @@
+<%# Form fields %>
+<%= form_for(@material,  :url => (@material.new_record? ? main_app.materials_path : main_app.material_path(@material.id)), :html => { :multipart => true }) do |f| %>
+  <% if @material.errors.any? %>
+    <div class="error-explanation-header">
+      <%= pluralize(@material.errors.count, "error impidió", "errores impidieron") %> que se guardaran los cambios.
+    </div>
+<% end %>
+
+
+
+
+<%# Name %>
+<div class="row">
+  
+    <%= full_field(f,:name, 'Name' ,'Name...') %>
+  
+</div>
+
+
+
+<%# Price %>
+<div class="row">
+  
+    <%= full_field(f,:price, 'Price' ,'Price...') %>
+  
+</div>
+
+
+
+<%# Available %>
+<div class="row">
+  
+    <%= f.label :available, class:'field-options-wrapper' do %>
+        <%= f.check_box :available %>Available
+    <% end %>
+  
+</div>
+
+<hr>
+<%# Colors %>
+<div class="row">
+  
+  <%= link_to_add_association "Agregar color", f ,:colors, :'data-association-insertion-node' => '.insertion-node',:'data-association-insertion-method' => 'append',  class: 'c4-button-secondary u-full-width'  %>
+  
+</div>
+
+
+<div class="row insertion-node">
+<%= f.fields_for :colors do |m| %>
+  <%= render 'color_fields', f: m %>
+<% end %>
+</div>
+
+<hr>
+<div class="row">
+  <div class="six columns">
+    <%= link_to "Salir sin guardar", main_app.materials_path, class: 'c4-button-secondary u-full-width'  %>
+  </div>
+
+  <div class="six columns">
+    <%= f.submit "Guardar", class: 'c4-button-primary u-full-width' %>
+  </div>
+</div>
+
+<% end %>

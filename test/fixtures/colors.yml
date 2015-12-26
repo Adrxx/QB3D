@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hex: MyString
+  available: false
+  material_id: 
+
+two:
+  hex: MyString
+  available: false
+  material_id: 

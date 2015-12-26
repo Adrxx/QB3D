@@ -1,0 +1,38 @@
+<%= link_to main_app.materials_path, class: 'c4-grid-cell' do %>
+      <div class='centered'>
+        <span class='icon-folder_shared'></span>
+        <span class='name'>Materials</span>
+        <span class='description'>Edita la informacion de materiales y colores.</span>
+      </div>
+    <% end %><%= link_to main_app.announcements_path, class: 'c4-grid-cell' do %>
+      <div class='centered'>
+        <span class='icon-folder_shared'></span>
+        <span class='name'>Announcements</span>
+        <span class='description'>Anuncios de la pagina principal</span>
+      </div>
+    <% end %>
+<% if current_user.role == "admin" %>
+  <%= link_to c4.users_path, class: 'c4-grid-cell' do %>
+    <div class="centered">
+      <span class="icon-users"></span>
+      <span class="name">Usuarios</span>
+      <span class="description">Administra las cuentas del sistema.</span>
+    </div>
+  <% end %>
+<% else %>
+<%= link_to c4.edit_user_path(current_user), class: 'c4-grid-cell' do %>
+    <div class="centered">
+      <span class="icon-users"></span>
+      <span class="name">Usuario</span>
+      <span class="description">Edita tu cuenta.</span>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to c4.destroy_user_session_path, :method => :delete, class: 'c4-grid-cell -nav-only' do %>
+  <div class="centered">
+    <span class="icon-upload"></span>
+    <span class="name">Salir</span>
+    <span class="description">Cierra la sesión actual.</span>
+  </div>
+<% end %>

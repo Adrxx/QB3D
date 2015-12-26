@@ -6,12 +6,26 @@
 $blue-c: #3859A7;
 $aqua-c: #51DBC3;
 $green-c: #3CAB67;
+$greenmint-c: #59cda6;
+$greenneon-c: #7ee29f;
 $greenlight-c: #95FF4D;
 $darkgreen-c: #498039;
 $golden-c: #D6952C;
+$tomato-c: #ce715e;
 $darkyellow-c: #F1E83E;
 $yellow-c: #FEE640;
 $gray-c: #393939;
+
+// More Colors
+$stateblue-c: #6758B4;
+$stateblueboldw-c: #392B51;
+$purple-c: #7958B4;
+$purpleboldw-c: #392B51;
+$red-c: #C1484C;
+$redorange-c: #E2AE51;
+$greennew-c: #40A17B;
+$greenboldw-c: #6CF26E;
+
 
 // Box Colors
 $green-box-c: #77E854;
@@ -31,7 +45,7 @@ body {
   text-decoration: none;
 
   padding: 6px 20px;
-  border: solid 2px $color;
+  border: solid 1px $color;
   color:  $color;
 
   display: inline-block;
@@ -54,7 +68,7 @@ nav.main-nav
   @include align-items(center);
 
   position:fixed;
-  background-color:transparentize(white, 0.8);
+  //background-color:transparentize(white, 0.8);
   width: 100%;
   height: 65px;
   z-index: 100;
@@ -65,6 +79,11 @@ nav.main-nav
     //background-color: blue;
     text-decoration: none;
     color: white;
+  }
+
+  .button
+  {
+    @include main-button-style(white);
   }
 
   .logo
@@ -85,6 +104,26 @@ nav.main-nav
       @include transform(rotate(60deg));
     }
   }
+}
+
+//=================================
+//-*****    iFrame Fabnami
+//=================================
+
+iframe {
+  position: absolute;
+  bottom: 0px;
+  height: calc(100vh - 65px);
+  width: 100%;
+}
+
+.loading {
+  font-size: 30px;
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 50%;
+  text-align: center;
 }
 
 //=================================
@@ -129,14 +168,88 @@ section
                 font-size: 2.0em;
                 color: $greenlight-c;
               }
-    .extra { float: left;
-              color: $darkgreen-c; 
-            }
-    .boxcolor{ 
-      display: inline-block;
-            padding: 40px;
-              background-color: transparentize($green-box-c , 0.25); }
     .color_word { color: $greenlight-c; }
+
+    .materials
+    {
+      display: inline-block;
+      position: absolute;
+      left: 10%;
+      bottom: 100px;
+      background-color: red;
+      height: auto;
+      width: 300px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+    }
+
+    .row
+    {
+      height: auto;
+      width: 100%;
+      background-color: $greenlight-c;
+      color: $gray-c;
+      line-height: 50px;
+      //padding-left:20px;
+      font-size: 1.2em;
+      font-weight: 600;
+
+      &:before
+      {
+        display: inline-block;
+        margin-left: 17px;
+        margin-bottom: 3px;
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px 5px 0 5px;
+        border-color: $greennew-c transparent $greennew-c transparent;
+
+      }
+
+      &:not(.row:last-child)
+      {
+        border-bottom: 1px solid darken($greenlight-c,40%);
+      }
+
+      &:hover
+      {
+        background-color: lighten($greenlight-c, 10%);
+      }
+
+      span
+      {
+              font-weight: 500;
+
+        margin-left: 6px;
+        font-size: 0.8em;
+      }
+
+      .colors 
+      {
+        height: 0px;
+        width: 100%;
+        @include display(flex);
+        @include justify-content(center);
+        @include align-items(center);
+
+        @include transition-duration(0.3s);
+        @include transition-property(height);
+
+        &.exploded {
+          height: 20px;
+        }
+
+        div {
+          height: 100%;
+          @include flex(1);
+
+        }
+      }
+    }
   }
 
   &#recibe
@@ -158,6 +271,7 @@ section
     }
     .extra { //text-align: right;
             float: right;
+            margin-top: 0px;
             color: gray-c; }
     .boxcolor{ 
       display: inline-block;
@@ -177,6 +291,8 @@ section
 
     height: 100vh;
     min-height: 750px;
+    overflow-x: hidden;
+
   }
 
   .scrollable 
@@ -209,7 +325,8 @@ section
     top: 53%;
     left: 50%;
     @include transform(translate(-50%, -50%));
-    box-shadow: 0px 4px 15px black;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -241,6 +358,7 @@ section
       //background-color:green;
     margin: 0 auto;
     width: 80%;
+    text-shadow: 0px 1px 6px transparentize(black, 0.6);
   }
     .description
     {
@@ -300,17 +418,6 @@ section
 //-*****    Para ti
 //=================================
 
-// Colors
-$stateblue-c: #6758B4;
-$stateblueboldw-c: #392B51;
-$purple-c: #7958B4;
-$purpleboldw-c: #392B51;
-$red-c: #C1484C;
-$redorange-c: #E2AE51;
-$greennew-c: #40A17B;
-$greenboldw-c: #6CF26E;
-
-
 
 #DMAT
 {
@@ -337,13 +444,13 @@ $greenboldw-c: #6CF26E;
   .title
   {
     margin: 0px;
-    font-size: 2.75em;
+    font-size: 2.4em;
     color: $purpleboldw-c;
   }
 
   .description
   {
-    font-size: 1.6em;
+    font-size: 1.4em;
   }
 
   .block
@@ -354,14 +461,34 @@ $greenboldw-c: #6CF26E;
 
     float: right;
     clear: both;
-    top: 450px;
-    margin-bottom: 140px;
+    top: 322px;
+    margin-bottom: 12px;
+
+    &>.title:before
+    {
+       content: '';
+      display: block;
+      position: relative;
+      height: 120px;
+      margin: 4px 0;
+      left: 50%;
+      width: 120px;
+      margin-left: -60px;
+      background-repeat: no-repeat;
+      background-origin: center;
+      background-size: contain;
+      //background-color: black;
+        //@include transition-delay(0.2s);
+    }
 
     &:nth-child(2)
     {
       right: 10%;
       //background-color:blue;
       text-align: right;
+
+      &>.title:before { background-image: image-url('disenador.png'); }
+
       //.description { text-align: right; }
     }
     &:nth-child(3)
@@ -370,12 +497,14 @@ $greenboldw-c: #6CF26E;
       //background-color:blue;
       //text-align: left;
       .description { text-align: left; }
+       &>.title:before { background-image: image-url('maker.png'); }
     }
     &:nth-child(4)
     {
       right: 30%;
       //background-color:blue;
       text-align: right;
+       &>.title:before { background-image: image-url('artista.png'); }
       //.description { text-align: right; }
     }
     &:nth-child(5)
@@ -383,6 +512,7 @@ $greenboldw-c: #6CF26E;
       right: 60%;
       //background-color:blue;
       //text-align: left;
+       &>.title:before { background-image: image-url('todos.png'); }
       .description { text-align: left; }
     }
   }
@@ -395,11 +525,11 @@ $greenboldw-c: #6CF26E;
   {
     display: inline-block;
     position:relative;
-    top:25%;
-    margin-left: 30px;
+    top:20%;
+    left: 10%;
     //background-color: cyan;
     text-align: right;
-    font-size: 4em;
+    font-size: 3em;
   }
   span { color: $stateblueboldw-c; }
 }
@@ -407,44 +537,249 @@ $greenboldw-c: #6CF26E;
 #tienda
 {
   background-color: $red-c;
-  height: 200vh;
-  min-height: 1800px;
+  //height: 200vh;
+  min-height: 1400px;
+  .button{
+    @include main-button-style($redorange-c);
+    font-size: 0.7em;
+    margin-top: 10px;
+  }
   .text
   {
     display: inline-block;
     position:relative;
     top:25%;
     float:right;
-    margin-right: 30px;
-    text-align: left;
+    right: 10%;
+    text-align: right;
     //background-color:purple;
-    font-size: 2em;
+    font-size: 1.5em;
     span 
     {
+      font-size: 1.8em;
       color: $redorange-c;
       //font-size: 3em; 
     }
   }
+  
+  .announcements
+  {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 500px;
+    bottom: 0px;
+    pointer-events: none;
+
+    .shape {
+      position: absolute;
+    background-color: $tomato-c; 
+    width: 100%;
+    height: 500px;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+    @include transform(skewY(20deg));
+    @include transform-origin(top left);
+    }
+
+    .announcement
+    {
+      display: inline-block;
+      position:absolute;
+      z-index: 30;
+      //background-color:red;
+      bottom: 100px;
+      left: 10%;
+      max-width: 80%;
+      font-size: 1.3em;
+    }
+
+    .title
+    {
+      font-size: 2em;
+      color:$redorange-c ;
+    }
+
+    .date 
+    {
+      font-size: 0.7em;
+      color: transparentize($redorange-c, 0.1);
+
+      //margin-left: 10px;
+      &:after
+        {
+          content: '';
+          display: block;
+          position: relative;
+          height: 1px;
+          margin: 6px 0;
+          left: 0;
+          width: 100%;
+          background-color: transparentize($redorange-c, 0.4);
+          //@include transition-delay(0.2s);
+        }
+    }
+
+
+  }
+
 }
 
 #contactanos
 {
   background-color: $greennew-c;
+
+  .shadow
+  {
+    position:absolute;
+    width: 100%;
+    top: -20px;
+    height: 20px;
+    background-color: red;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+  }
   .text
   {
     display: inline-block;
     position:relative;
-    top:25%;
-    margin-left: 30px;
+    top:13%;
+    left: 10%;
     text-align: left;
     //background-color: orange;
-    font-size: 2em;
+    font-size: 1.5em;
     span
-    {
+    {      
+      font-size: 1.8em;
       color: $greenboldw-c;
       //font-size: 3em;
     }
   }
+
+  .contact-info
+  {
+        position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 500px;
+    bottom: 0px;
+
+    .shape {
+      position: absolute;
+      top:30px;
+    background-color: $greenmint-c; 
+    width: 100%;
+    height: 500px;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+    @include transform(skewY(10deg));
+    @include transform-origin(top left);
+    }
+
+    .square
+    {
+      position:absolute;
+      width: 45%;
+      height: 60%;
+      bottom: 40px;
+      left: 40px;
+      //background-color: red;
+    }
+
+    .field 
+    {
+      height: 100%;
+      width: 100%;
+      background-image: image-url("cont.png");
+      background-position: center;
+      background-size: 90% auto;
+      background-repeat: no-repeat;
+    }
+
+  }
+
+  .contact-form
+  {
+    position: absolute;
+    overflow: hidden;
+    width: 600px;
+    //background-color:blue;
+    height: 100%;
+    bottom: 0px;
+    right: 0px;
+
+    .shape {
+      position: absolute;
+    background-color: $greenneon-c; 
+    left: 20px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+    @include transform(skewX(-10deg));
+    @include transform-origin(bottom left);
+    }
+
+    .square
+    {
+      position:absolute;
+      width: 60%;
+      right: 40px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+        color: $gray-c;
+      text-align: center;
+
+      //background-color: red;
+
+    }
+
+    .error-message {
+  text-align: center;
+  color: $tomato-c;
+  //background-color: transparentize($greennew-c, 0.5);
+  //border:solid 1px $greenlight-c;
+  border-top: none;
+  padding: 2px;
+  margin-top: -14px;
+  margin-bottom:10px;
+}
+
+
+
+    .titulo
+    {
+      font-size: 1.5em;
+    }
+
+    .campo
+    {
+      @include appearance(none);
+      display: block;
+      border-radius: 5px;
+      width: 80%;
+      margin: 17px auto;
+      padding: 12px 12px;
+      background-color: transparentize(white, 0.7);
+      border: 1px solid transparentize(white, 1);
+      color: $gray-c;
+      &.area
+      {
+        height: 280px;
+      }
+    }
+
+    .boton
+    {
+      @include main-button-style(darken($greennew-c,12%));
+      display: block;
+      font-size: 20px;
+      background-color: transparent;
+      width: 80%;
+      margin: 5px auto;
+    }
+  }
+
+
   
 }
 

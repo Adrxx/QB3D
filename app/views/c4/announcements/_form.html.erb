@@ -1,0 +1,50 @@
+<%# Form fields %>
+<%= form_for(@announcement,  :url => (@announcement.new_record? ? main_app.announcements_path : main_app.announcement_path(@announcement.id)), :html => { :multipart => true }) do |f| %>
+  <% if @announcement.errors.any? %>
+    <div class="error-explanation-header">
+      <%= pluralize(@announcement.errors.count, "error impidió", "errores impidieron") %> que se guardaran los cambios.
+    </div>
+<% end %>
+
+
+
+
+<%# Title %>
+<div class="row">
+  
+    <%= full_field(f,:title, 'Title' ,'Title...') %>
+  
+</div>
+
+
+
+<%# Description %>
+<div class="row">
+  
+    <%= full_text_area(f,:description, 'Description' ,'Description...') %>
+  
+</div>
+
+
+
+<%# Featured %>
+<div class="row">
+  
+    <%= f.label :featured, class:'field-options-wrapper' do %>
+        <%= f.check_box :featured %>Featured
+    <% end %>
+  
+</div>
+
+<hr>
+<div class="row">
+  <div class="six columns">
+    <%= link_to "Salir sin guardar", main_app.announcements_path, class: 'c4-button-secondary u-full-width'  %>
+  </div>
+
+  <div class="six columns">
+    <%= f.submit "Guardar", class: 'c4-button-primary u-full-width' %>
+  </div>
+</div>
+
+<% end %>
