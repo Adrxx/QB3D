@@ -10,9 +10,9 @@ GIT
 
 GIT
   remote: https://github.com/Adrxx/C4.git
-  revision: a40f6dbaf121aff9a4093b7a377f1ff7a4e9baf5
+  revision: 3e656386fa1937466f952f962c531eb83a37ce7b
   specs:
-    c4 (0.0.2)
+    c4 (0.0.3)
       coffee-rails
       devise
       jquery-rails
@@ -213,7 +213,7 @@ PLATFORMS
 DEPENDENCIES
   bower-rails (~> 0.9.2)
   byebug
-  c4!
+  c4 (= 0.0.3)!
   cocoon
   coffee-rails (~> 4.1.0)
   compass-rails!

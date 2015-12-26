@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'c4', :git => 'https://github.com/Adrxx/C4.git'
+gem 'c4', '0.0.3', :git => 'https://github.com/Adrxx/C4.git'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 gem 'cocoon'
 gem 'simple_form', '~> 3.1.0'
