@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>QB</title>
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -16,15 +16,12 @@
 
  ga('create', 'UA-71762536-1', 'auto');
  ga('send', 'pageview');
-
 </script>
 
 </head>
 
 <body>
-
-<nav class="main-nav">
-  <%= link_to 'Enviar diseño', fabnami_path, class:'button' %>
+<nav class="main-nav dark-mode">
   <%= link_to root_path do %>
     <div class="logo"></div>
   <% end %>
@@ -33,7 +30,10 @@
   <%= link_to 'Tienda', url_for("http://tienda.qb3d.com.mx") %>
 </nav>
 
+
+
 <%= yield %>
+<%= c4_queries_test %>
 
 </body>
 </html>

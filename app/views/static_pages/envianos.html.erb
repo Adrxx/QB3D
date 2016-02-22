@@ -1,86 +1,91 @@
-<!-- Imagina -->
-<section id="imagina" class="parallax-peel-container">
+<!-- Diseñadores, Makers, Artistas, Todos -->
+<section id="DMAT">
+  <div class="skewed-background"></div>
+  <div class="block">
+    <div class="title">Diseñadores</div>
+    <div class="description">Imprime prototipos y crea los <br>mejores productos.</div>
+  </div>
+  <div class="block">
+    <div class="title">Makers</div>
+    <div class="description">
+      ¿No existe la pieza que <br>necesitas? Imprímela en 3D.
+      </div>
+  </div>
+  <div class="block">
+    <div class="title">Artistas</div>
+    <div class="description">
+      Imprime prototipos y crea los <br>mejores productos.
+    </div>
+  </div>
+  <div class="block">
+    <div class="title">Todos</div>
+    <div class="description">
+      Imprime regalos personalizados, juguetes, <br>
+      decoración y muchas cosas más.
+    </div>
+  </div>
+</section>
+<!-- Posibilidades -->
+<section id="posibilidades" class="parallax-peel-container">
   <div class="scrollable">
     <div class="fixed">
-      <div class="step-number">1</div>
-      <div class="image"></div>
-    </div>
-    <div class="grid">
-      <div data-sr="reset" class="description">
-        Desde un juguete <br>
-        hasta tu siguiente <br> 
-        obra de arte. 
-      </div>
-      <div data-sr="reset" class="title">Imagina y Diseña</div>
-      <div data-sr="reset" class="subtitle">Las posibilidades son <br>infinitas.</div>
-      <div data-sr="reset" class="extra">
-        ¿No eres diseñador? <br> No te preocupes, <!-- <br> 
-        podemos ayudarte a <span class="color_word">encontrarlo</span> o  -->puedes <br> 
-        ver nuestro <%= link_to 'catálogo', url_for("http://tienda.qb3d.com.mx"), class:'color_word'  %>
-.
+      <div class="text" >
+        Con <span class="color_word">QBD3</span>, las<br> posibilidades son<span class="color_word"><br>ilimitadas</span>
       </div>
     </div>
   </div>
 </section>
-<!-- Envianos -->
-<section id="envianos" class="parallax-peel-container">
+<!-- Tienda -->
+<section id="tienda" class="parallax-peel-container">
   <div class="scrollable">
     <div class="fixed">
-      <div class="step-number">2</div>
-      <div  class="image"></div>
-    </div>
-    <div class="grid">
-      <div data-sr="reset" class="description">
-        Escoge las mejores <br>
-        opciones de <span class="color_word">impresión</span><br> 
-        para tu proyecto.
+      <div class="text">
+        <span>Tienda 3D</span><br> Descubre nuevos productos, nuevas <br>soluciones y los mejores regalos.
+        <br>
+         <%= link_to 'Ir a la Tienda', url_for("http://tienda.qb3d.com.mx"),class:'button' %>
       </div>
-      <div data-sr="reset" class="title">Envíanos tu <br>diseño.</div>
-      <div data-sr="reset" class="subtitle">Déjanos hacerlo realidad.</div>
-    </div>
-  </div>
-  <div class="materials">
-    <% @materials.each do |m| %>
-      <% if m.available %>
-      <div class="row">
-        <%= m.name %> <span><%= m.price %></span>
-        <div class="colors">
-          <% m.colors.each do |c| %>
-            <div style="background-color:#<%= c.hex %>"></div>
-          <% end %>
-        </div>   
-      </div>
-      <% end %>
-    <% end %>
-  </div>
-
-</section>
-<!-- Recibe -->
-<section id="recibe" class="parallax-peel-container">
-  <div class="scrollable">
-    <div class="fixed">
-      <div class="step-number">3</div>
-      <div class="image"></div>
-    </div>
-        <div class="grid">
-      <div data-sr="reset" class="description">
-        Recíbelo en tu casa o <br>
-        <span class="color_word">universidad.</span> <br>
-        <%= link_to 'Enviar diseño', fabnami_path %>
-
-      </div>
-      <div data-sr="reset" class="title">Recibe tu <br> impresión.</div>
-      <div data-sr="reset" class="subtitle">Vamos a donde estés.</div>
-      <div data-sr="reset" class="extra">
-        <div class="boxcolor">
-            <span>Universidades</span>
-            Tec de Monterrey CEM<br>
-            Universidad Iberoamericana<br>
-            UAM Azcapotzalco<br>
-            Tec de Monterrey CSF<br>
-            FES Acatlán 
+      <div class="categories">
+        <div class="category">
+          <div class="name">Holas</div>
         </div>
       </div>
     </div>
+    <div class="announcements">
+      <div class="shape"></div>
+      <div class="announcement">
+        <% @announcements.each do |announcement| %>
+          <% if announcement.featured %>
+            <div class="title"><%= announcement.title %></div>
+            <div class="date"><%= announcement.created_at.strftime('%d/%m/%Y')%></div>
+            <%= announcement.description %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Contacto -->
+<section id="contactanos" class="parallax-peel-container">
+  <div class="scrollable">
+
+    <div class="fixed">
+      <div class="text">
+        <span>Contáctanos</span><br>Comparte con nosotros tus ideas más<br>frescas, envíanos un saludo o déjanos <br>resolver tus dudas.
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="shape"></div>
+      <div class="square">
+        <div class="field"></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="shape"></div>
+      <div class="square">
+        <%= render "contacto" %>
+      </div>
+    </div>
+
+    <div class="shadow"></div>
   </div>
 </section>

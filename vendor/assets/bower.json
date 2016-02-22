@@ -2,8 +2,9 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "normalize.css": "latest",
-    "scrollReveal.js": "latest",
+    "scrollreveal": "latest",
     "bourbon": "latest",
-    "neat": "latest"
+    "neat": "latest",
+    "animate.css": "latest"
   }
 }

@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
-  def home
-  end
 
-  def parati
+
+  def landing
+    @materials = Material.all
     @announcements = Announcement.all
     if Preference.first.nil?
       p = Preference.new
@@ -10,10 +10,6 @@ class StaticPagesController < ApplicationController
     end
     @prefs = Preference.first
     @contact = Contact.new
-  end
-
-  def envianos
-    @materials = Material.all
   end
 
   def enviar_contacto

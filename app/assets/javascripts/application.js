@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require scrollReveal.js/dist/scrollReveal
-//= require_tree .
+//= require scrollreveal/dist/scrollreveal.min.js
+//= require scrollStartStopEvents.js
+//= require smoothScroll.js
+//= require static_pages.js
+//= require c4/c4

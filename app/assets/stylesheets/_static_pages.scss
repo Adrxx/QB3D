@@ -1,7 +1,3 @@
-@import "normalize.css/normalize";
-@import "bourbon/app/assets/stylesheets/bourbon";
-@import "neat/app/assets/stylesheets/neat";
-
 // Colors
 $blue-c: #3859A7;
 $aqua-c: #51DBC3;
@@ -32,13 +28,14 @@ $green-box-c: #77E854;
 $yellow-box-c: #EFD037;
 
 $transparency:0.13;
+$min-section-height:031;
 
 
 body {
   font-weight: 400;
   font-family: 'Lato', sans-serif;
   color: white;
-  background-color: black;
+  background-color: white;
 }
 
 @mixin main-button-style($color) {
@@ -81,6 +78,19 @@ nav.main-nav
     color: white;
   }
 
+  &.dark-mode
+  {
+    .logo
+    {
+      background-image: image-url("logo-dark.png");
+    }
+
+    a
+    {
+      color: black;
+    }
+  }
+
   .button
   {
     @include main-button-style(white);
@@ -96,12 +106,12 @@ nav.main-nav
     height: 40px;
     width: 40px;
     @include transition-property(transform);
-    @include transition-duration(0.15s);
+    @include transition-duration(0.35s);
     @include transition-timing-function(ease-in);
 
     &:hover
     {
-      @include transform(rotate(60deg));
+      opacity: 0.0;
     }
   }
 }
@@ -133,19 +143,22 @@ iframe {
 section
 {
   $number-width: 80px;
-  
+
   //Para casos específicos de sección
   &#imagina
   {
-    .fixed { background-color: $blue-c; }
-    .image { 
+    .fixed
+    {
+      background-color: $blue-c;
+    }
+    .image {
       background-image: image-url("imagina.png");
       background-color: $blue-c;
      }
     .step-number { color: $aqua-c; }
-    .subtitle { font-size: 2.5em;
-                color: $aqua-c; }
-    .description { font-size: 1.4em; }
+    .subtitle {
+      color: $aqua-c;
+    }
     .color_word { color: $aqua-c; }
   }
 
@@ -160,28 +173,32 @@ section
       margin-left: -($number-width/2 - 12);
     }
     .title { text-align: right; }
-    .description { //text-align: left;
-                    text-align: left;
-                    
-                    font-size: 1.3em; }
-    .subtitle { text-align: right;
-                font-size: 2.0em;
-                color: $greenlight-c;
-              }
+    .description { text-align: left;}
+    .subtitle {
+      text-align: right;
+      color: $greenlight-c;
+    }
     .color_word { color: $greenlight-c; }
 
     .materials
     {
-      display: inline-block;
-      position: absolute;
-      left: 10%;
-      bottom: 100px;
-      background-color: red;
+
       height: auto;
-      width: 300px;
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0px 1px 20px transparentize(black, 0.5);
+      width: 100%;
+
+      @include desktop
+      {
+        position: absolute;
+        display: inline-block;
+        left: 10%;
+        width: 300px;
+        bottom: 100px;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+
+      }
 
     }
 
@@ -222,13 +239,12 @@ section
 
       span
       {
-              font-weight: 500;
-
+        font-weight: 500;
         margin-left: 6px;
         font-size: 0.8em;
       }
 
-      .colors 
+      .colors
       {
         height: 0px;
         width: 100%;
@@ -257,79 +273,125 @@ section
     .fixed { background-color: $golden-c; }
     .image { background-image: image-url("recibe.png"); }
     .step-number { color: $darkyellow-c; }
-    .subtitle { font-size: 2.5em;
-                color: $darkyellow-c; }
-    .description 
-    { 
-      font-size: 1.4em; 
-
+    .subtitle { color: $darkyellow-c; }
+    .description
+    {
       a {
         font-size: 0.8em;
         @include main-button-style($darkyellow-c);
         margin-top: 20px;
       }
     }
-    .extra { //text-align: right;
-            float: right;
-            margin-top: 0px;
-            color: gray-c; }
-    .boxcolor{ 
-      display: inline-block;
-            padding: 30px;
+    .extra
+    {
+      //text-align: right;
+      margin-top: 15px;
+      color: $gray-c;
+      width: 100%;
+
+      @include desktop
+      {
+        margin-top: 0;
+      }
+
+    }
+    .boxcolor
+    {
+
+      padding: 30px;
       font-size: 0.8em;
-              color: $gray-c;
-              background-color: transparentize($yellow-box-c, 0.25);
-              }
+      color: $gray-c;
+      background-color: transparentize($yellow-box-c, 0.25);
+
+      @include desktop
+      {
+        display: inline-block;
+      }
+    }
     .color_word { color: $darkyellow-c; }
   }
 
   // EN GENERAL PARA TODOS...
-  &.parallax-peel-container 
+  &.parallax-peel-container
   {
     position: relative;
     width: 100%;
-
-    height: 100vh;
-    min-height: 750px;
     overflow-x: hidden;
 
+    @include desktop
+    {
+      height: 100vh;
+      min-height: 700px;
+    }
+
   }
 
-  .scrollable 
+  .scrollable
+  {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    @include desktop
+    {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
+      clip: rect(0, auto, auto, 0);
+    }
+
+  }
+
+  .fixed
   {
     position: absolute;
-    width: 100%;
     height: 100%;
-    clip: rect(0, auto, auto, 0);
-
-  }
-
-  .fixed 
-  {
-    position: fixed;
-    top: 0px;
-    left: 0px;
     width: 100%;
-    height: 100%;
 
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
+
+    @include desktop
+    {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      min-height: 700px;
+
+
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
 
   }
 
   .image
-  {  
-    position: absolute;
-    height: 83%;
-    width: 60%;
-    top: 53%;
-    left: 50%;
-    @include transform(translate(-50%, -50%));
-    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+  {
 
-    background-size: cover;
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 500px;
+
+    //opacity: 0.7;
+
+    @include desktop
+    {
+      background-size: cover;
+      height: 83%;
+      width: 60%;
+      top: 53%;
+      left: 50%;
+      opacity: 1.0;
+      box-shadow: 0px 1px 20px transparentize(black, 0.5);
+      position: absolute;
+      @include transform(translate(-50%, -50%));
+
+    }
   }
 
   .step-number
@@ -352,43 +414,74 @@ section
   }
 
   .grid
-  { 
+  {
     position:relative;
     top: 15%;
       //background-color:green;
     margin: 0 auto;
+
+
     width: 80%;
     text-shadow: 0px 1px 6px transparentize(black, 0.6);
+    padding: 85px 0;
+    @include desktop
+    {
+      padding: 0;
+    }
   }
     .description
     {
       text-align: right;
+      font-size: 1.1em;
+
+      @include desktop
+      {
+        font-size: 1.4em;
+      }
       //background-color:skyblue;
     }
 
     .title
     {
       margin-top:55px;
-      font-size: 4em;
+      font-size: 2.8em;
+
+      @include desktop
+      {
+        font-size: 4em;
+      }
       //background-color:aqua;
     }
 
     .subtitle
     {
-      //background-color:yellow;
+      font-size: 1.4em;
+
+      @include desktop
+      {
+        font-size: 2em;
+      }
+
     }
 
     .extra
     {
         margin-top:40px;
+        font-size: 1.1em;
+
+
+      @include desktop
+      {
         font-size: 1.3em;
+      }
         text-align: right;
         //background-color:orange;
     }
 
-    .boxcolor 
+    .boxcolor
     {
       text-align: center;
+      text-shadow: none;
 
       span
       {
@@ -419,109 +512,158 @@ section
 //=================================
 
 
+%ra-block
+{
+  .title { text-align:right; }
+  .description { text-align:right; }
+  &>.title:before { background-position: right; }
+}
+
 #DMAT
 {
-  position:absolute;
-  z-index: 20;
+  position:relative;
   width: 100%;
-  height: 100vh;
-  
-  //background-color:tomato;
+  //min-height: 950px;
+  z-index: 10;
+  height: auto;
+  background-color:$purple-c;
+  background: tomato;
 
-  .skewed-background
+  @include desktop
   {
+    display:block;
+    height: 0px;
+
+  }
+
+  &:before
+  {
+    display: none;
+
+    @include desktop
+    {
+      display:block;
+    }
+
+    content: "";
     position:absolute;
-    top: 300px;
     width: 100%;
-    height: 1000px;
-    min-height: 600px;
+    height: calc(1646px - 57.93vw);
+    top: 0px;
     box-shadow: 0px 1px 20px transparentize(black, 0.5);
 
-    @include transform(skewY(-30deg));
-    background-color: $purple-c;
-  }
+    @include transform(skewY(-29deg));
+    @include transform-origin(left);
+    background-color: transparentize($purple-c, 0.0);
 
-  .title
-  {
-    margin: 0px;
-    font-size: 2.4em;
-    color: $purpleboldw-c;
-  }
 
-  .description
-  {
-    font-size: 1.4em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
   }
 
   .block
   {
-    position:relative;
-    //background-color:purple;
-    display: inline-block;
+    //position:relative;
+    background-color:red;
+    display: block;
 
-    float: right;
-    clear: both;
-    top: 322px;
-    margin-bottom: 12px;
+    .title
+    {
+      margin: 0px;
+      font-size: 2.4em;
+      color: $purpleboldw-c;
+      text-align: left;
+    }
+
+    .description
+    {
+      font-size: 1.4em;
+      width: 100%;
+      text-align: left;
+    }
 
     &>.title:before
     {
-       content: '';
+      content: '';
       display: block;
+      //background: white;
       position: relative;
       height: 120px;
-      margin: 4px 0;
-      left: 50%;
-      width: 120px;
-      margin-left: -60px;
+      width: 100%;
+      margin: 0 auto;
       background-repeat: no-repeat;
-      background-origin: center;
+      background-position: left;
       background-size: contain;
-      //background-color: black;
-        //@include transition-delay(0.2s);
     }
 
-    &:nth-child(2)
+    $list: "disenador.png" "maker.png" "artista.png" "todos.png";
+    @for $i from 1 through length($list)
     {
-      right: 10%;
-      //background-color:blue;
-      text-align: right;
 
-      &>.title:before { background-image: image-url('disenador.png'); }
+      &:nth-child(#{$i})
+      {
 
-      //.description { text-align: right; }
-    }
-    &:nth-child(3)
-    {
-      right: 50%;
-      //background-color:blue;
-      //text-align: left;
-      .description { text-align: left; }
-       &>.title:before { background-image: image-url('maker.png'); }
-    }
-    &:nth-child(4)
-    {
-      right: 30%;
-      //background-color:blue;
-      text-align: right;
-       &>.title:before { background-image: image-url('artista.png'); }
-      //.description { text-align: right; }
-    }
-    &:nth-child(5)
-    {
-      right: 60%;
-      //background-color:blue;
-      //text-align: left;
-       &>.title:before { background-image: image-url('todos.png'); }
-      .description { text-align: left; }
-    }
+        //CALCULATED ATTRIBUTES
+        @include desktop
+        {
+          top: calc( #{$i * 250px + 80px} - 57.93vw ) ;
+          position: absolute;
+          width: 300px + (40px * $i);
+        }
+
+        &>.title:before
+        {
+          background-image: image-url('#{nth($list,$i)}');
+        }
+
+
+        // SPECIFIC BY INDEX
+        @if $i == 1 {
+          @extend %ra-block;
+          right: 80px;
+
+        } @else if $i == 2 {
+
+          right: 430px;
+          @include big-af
+          {
+            right: 530px;
+          }
+
+        } @else if $i == 3 {
+          @extend %ra-block;
+          left: 480px;
+          @include big-af
+          {
+            left: 550px;
+          }
+
+        } @else {
+
+          left: 50px;
+          @include big-af
+          {
+            left: 60px;
+          }
+
+        }
+
+
+      }
+    } //FOR
+
+
   }
 }
 
 #posibilidades
 {
   background-color: $stateblue-c;
-  .text 
+  height: 100vh;
+  min-height: 0px;
+
+  .text
   {
     display: inline-block;
     position:relative;
@@ -537,9 +679,9 @@ section
 #tienda
 {
   background-color: $red-c;
-  //height: 200vh;
   min-height: 1400px;
-  .button{
+  .button
+  {
     @include main-button-style($redorange-c);
     font-size: 0.7em;
     margin-top: 10px;
@@ -554,14 +696,14 @@ section
     text-align: right;
     //background-color:purple;
     font-size: 1.5em;
-    span 
+    span
     {
       font-size: 1.8em;
       color: $redorange-c;
-      //font-size: 3em; 
+      //font-size: 3em;
     }
   }
-  
+
   .announcements
   {
     position: absolute;
@@ -573,7 +715,7 @@ section
 
     .shape {
       position: absolute;
-    background-color: $tomato-c; 
+    background-color: $tomato-c;
     width: 100%;
     height: 500px;
     box-shadow: 0px 1px 20px transparentize(black, 0.5);
@@ -599,7 +741,7 @@ section
       color:$redorange-c ;
     }
 
-    .date 
+    .date
     {
       font-size: 0.7em;
       color: transparentize($redorange-c, 0.1);
@@ -648,7 +790,7 @@ section
     //background-color: orange;
     font-size: 1.5em;
     span
-    {      
+    {
       font-size: 1.8em;
       color: $greenboldw-c;
       //font-size: 3em;
@@ -666,7 +808,7 @@ section
     .shape {
       position: absolute;
       top:30px;
-    background-color: $greenmint-c; 
+    background-color: $greenmint-c;
     width: 100%;
     height: 500px;
     box-shadow: 0px 1px 20px transparentize(black, 0.5);
@@ -684,7 +826,7 @@ section
       //background-color: red;
     }
 
-    .field 
+    .field
     {
       height: 100%;
       width: 100%;
@@ -708,7 +850,7 @@ section
 
     .shape {
       position: absolute;
-    background-color: $greenneon-c; 
+    background-color: $greenneon-c;
     left: 20px;
     width: 100%;
     height: 100%;
@@ -780,6 +922,6 @@ section
   }
 
 
-  
+
 }
 

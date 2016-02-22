@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226011545) do
+ActiveRecord::Schema.define(version: 20160205073710) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20151226011545) do
     t.boolean  "featured"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "c4_preferences", force: :cascade do |t|
+    t.text   "values",     default: "[]"
+    t.text   "youtube"
+    t.text   "facebook"
+    t.text   "twitter"
+    t.string "email"
+    t.string "telephone"
+    t.string "telephone2"
   end
 
   create_table "c4_users", force: :cascade do |t|

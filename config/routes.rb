@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
 
+  patch 'admin/contacto' => 'c4/admin#contact'
+  get 'admin/contacto' => 'c4/admin#contact', as: 'contact'
+
   resources :materials, path: 'admin/materials', except: :show, path_names: { new: 'nuevo', edit: 'editar' }, module: 'c4'
 
   resources :announcements, path: 'admin/announcements', except: :show, path_names: { new: 'nuevo', edit: 'editar' }, module: 'c4'
 
   mount C4::Engine => "/admin"
 
-  root 'static_pages#envianos'
+  root 'static_pages#landing'
 
   post '/enviar_contacto' => 'static_pages#enviar_contacto', as: 'enviar_contacto'
 

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'c4', '0.0.3', :git => 'https://github.com/Adrxx/C4.git'
+gem 'c4', '0.1.0', :git => 'https://github.com/Adrxx/C4.git'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 gem 'cocoon'
 gem 'simple_form', '~> 3.1.0'
@@ -8,7 +8,7 @@ gem 'mail_form', '~> 1.5.1'
 gem 'pg'
 
 # Bundle edge Rails instead: s', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
