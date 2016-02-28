@@ -16,12 +16,11 @@
       </div>
       <div class="title sr-right">Imagina y Diseña</div>
       <div class="subtitle sr-right">Las posibilidades son <br>infinitas.</div>
-      <div class="extra sr-left">
-        ¿No eres diseñador? <br> No te preocupes, <!-- <br>
-        podemos ayudarte a <span class="color_word">encontrarlo</span> o  -->puedes <br>
-        ver nuestro <%= link_to 'catálogo', url_for("http://tienda.qb3d.com.mx"), class:'color_word'  %>
-.
-      </div>
+    </div>
+    <div class="details sr-left">
+      ¿No eres diseñador? <br> No te preocupes, <!-- <br>
+      podemos ayudarte a <span class="color_word">encontrarlo</span> o  -->puedes <br>
+      ver nuestro <%= link_to 'catálogo', url_for("http://tienda.qb3d.com.mx"), class:'color_word'  %>
     </div>
   </div>
 </section>
@@ -41,22 +40,24 @@
       <div class="title sr-left">Envíanos tu <br>diseño.</div>
       <div class="subtitle sr-left">Déjanos hacerlo realidad.</div>
     </div>
-  </div>
-  <div class="materials">
-    <% @materials.each do |m| %>
-      <% if m.available %>
-      <div class="row">
-        <%= m.name %> <span><%= m.price %></span>
-        <div class="colors">
-          <% m.colors.each do |c| %>
-            <div style="background-color:#<%= c.hex %>"></div>
+    <div class="details">
+      <div class="materiales">
+      <%# @materials = @materials + @materials + @materials %>
+        <% @materials.each do |m| %>
+          <% if m.available %>
+          <div class="row">
+              <%= m.name %> <span><%= m.price %></span>
+              <div class="colors">
+                <% m.colors.each do |c| %>
+                  <div style="background-color:#<%= c.hex %>"></div>
+                <% end %>
+              </div>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
-      <% end %>
-    <% end %>
+    </div>
   </div>
-
 </section>
 <!-- Recibe -->
 <section id="recibe" class="parallax-peel-container">
@@ -74,15 +75,15 @@
       </div>
       <div class="title sr-right">Recibe tu <br> impresión.</div>
       <div class="subtitle sr-right">Vamos a donde estés.</div>
-      <div class="extra">
-        <div class="boxcolor">
-            <span>Universidades</span>
-            Tec de Monterrey CEM<br>
-            Universidad Iberoamericana<br>
-            UAM Azcapotzalco<br>
-            Tec de Monterrey CSF<br>
-            FES Acatlán
-        </div>
+    </div>
+    <div class="details">
+      <div class="universidades">
+          <span>Universidades</span>
+          Tec de Monterrey CEM<br>
+          Universidad Iberoamericana<br>
+          UAM Azcapotzalco<br>
+          Tec de Monterrey CSF<br>
+          FES Acatlán
       </div>
     </div>
   </div>

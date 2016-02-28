@@ -52,11 +52,17 @@ body {
 
 }
 
+//SPECIAL MEDIA QUERIES
+@mixin height-more-than($h) {
+  @media screen and (min-height: $h)
+  {
+    @content;
+  }
+}
 
 //=================================
 //-*****    Menú
 //=================================
-
 
 nav.main-nav
 {
@@ -65,319 +71,142 @@ nav.main-nav
   @include align-items(center);
 
   position:fixed;
-  //background-color:transparentize(white, 0.8);
   width: 100%;
-  height: 65px;
+  height: 44px;
   z-index: 100;
+  //background-color: transparentize(white, 0.8);
 
-  a
+  @include desktop
   {
-    margin: 0 20px;
-    //background-color: blue;
-    text-decoration: none;
-    color: white;
+    height: 65px;
+    background-color:transparent;
   }
 
   &.dark-mode
   {
-    .logo
+    .logo-container .monochrome
     {
       background-image: image-url("logo-dark.png");
     }
-
     a
     {
       color: black;
     }
   }
 
+  .left-wing
+  {
+    width: 100%;
+    a {
+      float:right;
+    }
+    //background-color: red;
+  }
+
+  .right-wing
+  {
+    width: 100%;
+  }
+
+  a
+  {
+    margin: 0 10px;
+    //background-color: blue;
+    text-decoration: none;
+    color: white;
+  }
+
+
   .button
   {
     @include main-button-style(white);
   }
 
-  .logo
+  .logo-container
   {
-    //background-color:orange;
-    background-image: image-url("logo.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 40px;
-    width: 40px;
-    @include transition-property(transform);
-    @include transition-duration(0.35s);
-    @include transition-timing-function(ease-in);
+    margin: 0 25px;
+    position: relative;
+    height: 30px;
+    width: 80px;
+
+    @include desktop
+    {
+      height: 40px;
+    }
+
 
     &:hover
     {
+      .monochrome { opacity: 0.0; }
+      .color { opacity: 1.0; }
+    }
+
+    %both-logos
+    {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      @include transition-property(opacity);
+      @include transition-duration(0.55s);
+
+    }
+    .color
+    {
+      @extend %both-logos;
+      background-image: image-url("logo-color.png");
       opacity: 0.0;
     }
+
+    .monochrome
+    {
+      @extend %both-logos;
+      background-image: image-url("logo.png");
+      opacity: 1.0;
+    }
+
+
+
   }
-}
 
-//=================================
-//-*****    iFrame Fabnami
-//=================================
-
-iframe {
-  position: absolute;
-  bottom: 0px;
-  height: calc(100vh - 65px);
-  width: 100%;
-}
-
-.loading {
-  font-size: 30px;
-  position: absolute;
-  display: block;
-  width: 100%;
-  top: 50%;
-  text-align: center;
 }
 
 //=================================
 //-*****    Impresión 3d
 //=================================
 
-section
-{
-  $number-width: 80px;
-
-  //Para casos específicos de sección
-  &#imagina
-  {
-    .fixed
-    {
-      background-color: $blue-c;
-    }
-    .image {
-      background-image: image-url("imagina.png");
-      background-color: $blue-c;
-     }
-    .step-number { color: $aqua-c; }
-    .subtitle {
-      color: $aqua-c;
-    }
-    .color_word { color: $aqua-c; }
-  }
-
-  &#envianos
-  {
-    .fixed { background-color: $green-c; }
-    .image { background-image: image-url("envianos.png"); }
-    .step-number {
-      color: $greenlight-c;
-      left: 80%;
-      top: 20%;
-      margin-left: -($number-width/2 - 12);
-    }
-    .title { text-align: right; }
-    .description { text-align: left;}
-    .subtitle {
-      text-align: right;
-      color: $greenlight-c;
-    }
-    .color_word { color: $greenlight-c; }
-
-    .materials
-    {
-
-      height: auto;
-      width: 100%;
-
-      @include desktop
-      {
-        position: absolute;
-        display: inline-block;
-        left: 10%;
-        width: 300px;
-        bottom: 100px;
-        overflow: hidden;
-        border-radius: 4px;
-        box-shadow: 0px 1px 20px transparentize(black, 0.5);
+$number-width: 80px;
 
 
-      }
+@mixin section-configuration($align,$color,$highlight,$image) {
 
-    }
+  $opposite: if($align == right, left, right );
 
-    .row
-    {
-      height: auto;
-      width: 100%;
-      background-color: $greenlight-c;
-      color: $gray-c;
-      line-height: 50px;
-      //padding-left:20px;
-      font-size: 1.2em;
-      font-weight: 600;
-
-      &:before
-      {
-        display: inline-block;
-        margin-left: 17px;
-        margin-bottom: 3px;
-        content: "";
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 5px 5px 0 5px;
-        border-color: $greennew-c transparent $greennew-c transparent;
-
-      }
-
-      &:not(.row:last-child)
-      {
-        border-bottom: 1px solid darken($greenlight-c,40%);
-      }
-
-      &:hover
-      {
-        background-color: lighten($greenlight-c, 10%);
-      }
-
-      span
-      {
-        font-weight: 500;
-        margin-left: 6px;
-        font-size: 0.8em;
-      }
-
-      .colors
-      {
-        height: 0px;
-        width: 100%;
-        @include display(flex);
-        @include justify-content(center);
-        @include align-items(center);
-
-        @include transition-duration(0.3s);
-        @include transition-property(height);
-
-        &.exploded {
-          height: 20px;
-        }
-
-        div {
-          height: 100%;
-          @include flex(1);
-
-        }
-      }
-    }
-  }
-
-  &#recibe
-  {
-    .fixed { background-color: $golden-c; }
-    .image { background-image: image-url("recibe.png"); }
-    .step-number { color: $darkyellow-c; }
-    .subtitle { color: $darkyellow-c; }
-    .description
-    {
-      a {
-        font-size: 0.8em;
-        @include main-button-style($darkyellow-c);
-        margin-top: 20px;
-      }
-    }
-    .extra
-    {
-      //text-align: right;
-      margin-top: 15px;
-      color: $gray-c;
-      width: 100%;
-
-      @include desktop
-      {
-        margin-top: 0;
-      }
-
-    }
-    .boxcolor
-    {
-
-      padding: 30px;
-      font-size: 0.8em;
-      color: $gray-c;
-      background-color: transparentize($yellow-box-c, 0.25);
-
-      @include desktop
-      {
-        display: inline-block;
-      }
-    }
-    .color_word { color: $darkyellow-c; }
-  }
-
-  // EN GENERAL PARA TODOS...
-  &.parallax-peel-container
-  {
-    position: relative;
-    width: 100%;
-    overflow-x: hidden;
-
-    @include desktop
-    {
-      height: 100vh;
-      min-height: 700px;
-    }
-
-  }
-
-  .scrollable
-  {
-    position: relative;
-    width: 100%;
-    height: 100%;
-
-    @include desktop
-    {
-      position: absolute;
-      width: 100%;
-      height: 100vh;
-      min-height: 700px;
-      clip: rect(0, auto, auto, 0);
-    }
-
-  }
-
-  .fixed
-  {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-
-
-    @include desktop
-    {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      min-height: 700px;
-
-
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-    }
-
-  }
-
+  background-color: $color;
   .image
   {
-
+    position: absolute;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 500px;
+    background-size: 700px;
 
-    //opacity: 0.7;
+    background-image: image-url($image);
+    background-color: $color;
+
+    left: if($align == right, -50%, 50% );
+
+    @include phablet
+    {
+      left: 0px;
+      right: 0px;
+      background-size: 600px;
+    }
 
     @include desktop
     {
@@ -388,129 +217,335 @@ section
       left: 50%;
       opacity: 1.0;
       box-shadow: 0px 1px 20px transparentize(black, 0.5);
-      position: absolute;
       @include transform(translate(-50%, -50%));
-
     }
-  }
 
-  .step-number
-  {
-    position:absolute;
-    $number-height: 80px;
-    height: $number-height;
-    width: $number-width;
-    left: 20%;
-    top: 20%;
-    margin-left: -($number-width/2 + 12);
+   }
+  .title { text-align: $align; }
+  .description { text-align: $opposite; }
+  .step-number {
 
-    text-align: center;
-    font-size: 80px;
-    font-weight: 600;
-    line-height: $number-height;
+    color: $highlight;
+    text-align: $align;
 
-    //background-color: black;
-    color: white;
-  }
+    @if ($align == right) {
+      left: 80%;
+      margin-left: -($number-width/2 - 12);
+    }
+    @else
+    {
+      left: 20%;
+      margin-left: -($number-width/2 + 12);
+    }
 
-  .grid
-  {
-    position:relative;
-    top: 15%;
-      //background-color:green;
-    margin: 0 auto;
+   }
+  .subtitle { color: $highlight; text-align: $align; }
+  .details {
 
+    position: relative;
+    font-size: 1.1em;
+    margin-bottom: 30px;
 
-    width: 80%;
-    text-shadow: 0px 1px 6px transparentize(black, 0.6);
-    padding: 85px 0;
+    height: auto;
+    width: 100%;
+
+    text-align: $opposite;
+
+    @include height-more-than(481px) {
+
+      position: absolute;
+      bottom: 5%;
+      overflow: hidden;
+      border-radius: 4px;
+      margin-left:10%;
+      width: 80%;
+      @include phablet
+      {
+        //Aligned to bottom
+        position: absolute;
+        bottom: 5%;
+        overflow: hidden;
+        border-radius: 4px;
+        margin-left:10%;
+        width: 80%;
+      }
+    }
+
     @include desktop
     {
-      padding: 0;
+      //Aligned to bottom
+      position: absolute;
+      bottom: 5%;
+      overflow: hidden;
+      border-radius: 4px;
+      margin-left:10%;
+      width: 80%;
     }
+
+
+
   }
-    .description
-    {
-      text-align: right;
-      font-size: 1.1em;
+  .color_word { color: $highlight; }
 
-      @include desktop
-      {
-        font-size: 1.4em;
-      }
-      //background-color:skyblue;
-    }
-
-    .title
-    {
-      margin-top:55px;
-      font-size: 2.8em;
-
-      @include desktop
-      {
-        font-size: 4em;
-      }
-      //background-color:aqua;
-    }
-
-    .subtitle
-    {
-      font-size: 1.4em;
-
-      @include desktop
-      {
-        font-size: 2em;
-      }
-
-    }
-
-    .extra
-    {
-        margin-top:40px;
-        font-size: 1.1em;
-
-
-      @include desktop
-      {
-        font-size: 1.3em;
-      }
-        text-align: right;
-        //background-color:orange;
-    }
-
-    .boxcolor
-    {
-      text-align: center;
-      text-shadow: none;
-
-      span
-      {
-        font-weight: 600;
-        &:after
-        {
-          content: '';
-          display: block;
-          position: relative;
-          height: 1px;
-          margin: 17px 0;
-          left: 50%;
-          width: 160px;
-          margin-left: -80px;
-          background-color: black;
-          @include transition-duration(0.9s);
-          @include transition-property(all);
-          //@include transition-delay(0.2s);
-        }
-      }
-    }
 }
 
+//Para casos específicos de sección
+#imagina {
+  @include section-configuration(left,$blue-c,$aqua-c,"imagina.png");
+}
+#envianos {
+  @include section-configuration(right,$green-c,$greenlight-c,"envianos.png");
+
+  .row
+  {
+    height: auto;
+    width: 100%;
+    background-color: $greenlight-c;
+    color: $gray-c;
+    line-height: 50px;
+    //padding-left:20px;
+    font-size: 1.2em;
+    font-weight: 600;
+
+    &:before
+    {
+      display: inline-block;
+      margin-left: 17px;
+      margin-bottom: 3px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 5px 0 5px;
+      border-color: $greennew-c transparent $greennew-c transparent;
+
+    }
+
+    &:not(.row:last-child)
+    {
+      border-bottom: 1px solid darken($greenlight-c,40%);
+    }
+
+    &:hover
+    {
+      background-color: lighten($greenlight-c, 10%);
+    }
+
+    span
+    {
+      font-weight: 500;
+      margin-left: 6px;
+      font-size: 0.8em;
+    }
+
+    .colors
+    {
+      height: 0px;
+      width: 100%;
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+
+      @include transition-duration(0.3s);
+      @include transition-property(height);
+
+      &.exploded {
+        height: 20px;
+      }
+
+      div {
+        height: 100%;
+        @include flex(1);
+
+      }
+    }
+  }
+}
+#recibe
+{
+  @include section-configuration(left,$golden-c,$darkyellow-c,"recibe.png");
+}
+
+
+
+
+$min-desktop-height: 600px;
+.parallax-peel-container
+{
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+
+  @include desktop
+  {
+    height: 100vh;
+    min-height: $min-desktop-height;
+  }
+
+}
+
+.scrollable
+{
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 100vh;
+
+  // @include height-more-than(700px)
+  // {
+  //   min-height: initial;
+  //   max-height: 700px;
+  // }
+
+
+  @include desktop
+  {
+    position: absolute;
+    max-height: initial;
+    height: 100vh;
+    width: 100%;
+    min-height: $min-desktop-height;
+    clip: rect(0, auto, auto, 0);
+  }
+
+}
+
+  .fixed
+  {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    @include desktop
+    {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      min-height: $min-desktop-height;
+
+
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+
+
+
+.step-number
+{
+  position:absolute;
+  z-index: 1;
+  $number-height: 80px;
+  height: $number-height;
+  width: $number-width;
+  top: 100px;
+
+
+
+  text-align: center;
+  font-size: 5em;
+  font-weight: 600;
+  line-height: $number-height;
+
+  //background-color: black;
+  color: white;
+
+  @include desktop
+  {
+    top: 15%;
+    z-index: 0;
+  }
+}
+
+.grid
+{
+  position:relative;
+  width: 100%;
+  text-shadow: 0px 1px 6px transparentize(black, 0.6);
+  padding: 15vh 0;
+  font-size: 13px;
+
+  @include desktop
+  {
+    width: 80%;
+    top: 15%;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+.description
+{
+  text-align: right;
+  font-size: 1.2em;
+  a {
+    font-size: 0.9em;
+    @include main-button-style($darkyellow-c);
+    margin-top: 20px;
+  }
+  //background-color:skyblue;
+}
+
+.title
+{
+  margin-top:55px;
+  font-size: 2.7em;
+  //background-color:aqua;
+}
+
+.subtitle
+{
+  font-size: 1.5em;
+}
+
+
+
+.universidades
+{
+  text-align: center;
+  text-shadow: none;
+
+  padding: 30px;
+  font-size: 0.8em;
+  color: $gray-c;
+  background-color: transparentize($yellow-box-c, 0.25);
+
+  @include desktop
+  {
+    display: inline-block;
+  }
+
+  span
+  {
+    font-weight: 600;
+
+    &:after
+    {
+      content: '';
+      display: block;
+      position: relative;
+      height: 1px;
+      margin: 17px 0;
+      left: 50%;
+      width: 160px;
+      margin-left: -80px;
+      background-color: black;
+      @include transition-duration(0.9s);
+      @include transition-property(all);
+      //@include transition-delay(0.2s);
+    }
+  }
+}
 
 
 //=================================
 //-*****    Para ti
 //=================================
-
 
 %ra-block
 {
@@ -660,8 +695,11 @@ section
 #posibilidades
 {
   background-color: $stateblue-c;
-  height: 100vh;
-  min-height: 0px;
+
+  @include desktop
+  {
+    height: 100vh;
+  }
 
   .text
   {

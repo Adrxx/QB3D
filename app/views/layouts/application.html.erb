@@ -22,12 +22,21 @@
 
 <body>
 <nav class="main-nav dark-mode">
-  <%= link_to root_path do %>
-    <div class="logo"></div>
-  <% end %>
+
+<div class="left-wing">
+</div>
+
+<%= link_to root_path, class: 'logo-container' do %>
+  <div class="color"></div>
+  <div class="monochrome"></div>
+<% end %>
+
+<div class="right-wing">
   <%= link_to '¿Cómo funciona?', envianos_path %>
   <%= link_to 'Para ti', parati_path %>
   <%= link_to 'Tienda', url_for("http://tienda.qb3d.com.mx") %>
+</div>
+
 </nav>
 
 
