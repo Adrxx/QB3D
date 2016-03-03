@@ -24,17 +24,20 @@
 <nav class="main-nav dark-mode">
 
 <div class="left-wing">
+  <%= link_to 'Enviar diseño', '#', class: 'button' %>
 </div>
 
-<%= link_to root_path, class: 'logo-container' do %>
+<%= link_to '#buenas-ideas', class: 'logo-container' do %>
   <div class="color"></div>
   <div class="monochrome"></div>
 <% end %>
 
+<div class="menu-button"></div>
+
 <div class="right-wing">
-  <%= link_to '¿Cómo funciona?', envianos_path %>
-  <%= link_to 'Para ti', parati_path %>
-  <%= link_to 'Tienda', url_for("http://tienda.qb3d.com.mx") %>
+  <%= link_to '¿Cómo funciona?', '#imagina', class: 'links' %>
+  <%= link_to 'Para ti', '#posibilidades', class: 'links' %>
+  <%= link_to 'Tienda', '#tienda' , class: 'links' %>
 </div>
 
 </nav>

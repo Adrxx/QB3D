@@ -10,30 +10,21 @@ $(document).on 'ready', ->
   sr.reveal '.sr-right',
     reset: false
     origin: 'left'
-    distance: '200px'
+    distance: '120px'
     duration: 600
-    delay: 200
-    rotate:
-      x: 0
-      y: 0
-      z: 0
+    delay: 50
+    viewFactor: 0.7
     opacity: 0
-    scale: 1.0
-    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
 
   #Enter to left animation
   sr.reveal '.sr-left',
     reset: false
     origin: 'right'
-    distance: '200px'
+    distance: '120px'
     duration: 600
-    delay: 200
-    rotate:
-      x: 0
-      y: 0
-      z: 0
+    delay: 50
+    viewFactor: 0.7
     opacity: 0
-    scale: 0.6
     #easing: 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
 
   #Enter to left animation
@@ -44,8 +35,7 @@ $(document).on 'ready', ->
     duration: 400
     delay: 100
     opacity: 0
-    viewFactor: 0.9
-    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
+    viewFactor: 0.6
 
   #Enter to left animation
   sr.reveal '.sr-tst',
@@ -66,17 +56,30 @@ $(document).on 'ready', ->
 
 
 
-  # window.lastY = 0
-  # window.deltaY = 0
-  # $(document).on 'scroll', ->
-  #   currentY = $(document).scrollTop()
-  #   if currentY >= $('#envianos').offset().top
-  #     $('.main-nav').removeClass 'dark-mode'
-  #   else
-  #     $('.main-nav').addClass 'dark-mode'
+  window.lastY = 0
+  window.deltaY = 0
 
-  #   window.deltaY = window.lastY - currentY
-  #   window.lastY = currentY
+  $('.menu-button').on 'click', ->
+    console.log 'sads'
+    target = $(@).parent().find('.right-wing')
+    $('.links').one 'click', ->
+      $(target).removeClass 'exploded'
+
+    if $(target).hasClass 'exploded'
+      $(target).removeClass 'exploded'
+    else
+      $(target).addClass 'exploded'
+
+
+  $(document).on 'scroll', ->
+    currentY = $(document).scrollTop()
+    if currentY >= $('#imagina').offset().top - $('.main-nav').height()/2
+      $('.main-nav').removeClass 'dark-mode'
+    else
+      $('.main-nav').addClass 'dark-mode'
+
+    window.deltaY = window.lastY - currentY
+    window.lastY = currentY
 
   # # Iterates over a string array of element queries
   # # and checks if a point in Y is contained in that element
@@ -88,12 +91,12 @@ $(document).on 'ready', ->
   # stickySectionsDesktop = ['#imagina','#envianos','#recibe']
   # window.isNowScrolling = false
   # $(document).on 'wheel keydown', ->
-  #   initialY = $(document).scrollTop() + window.innerHeight/2
-  #   initalSection = getCurrentSection(stickySectionsDesktop,initialY)
+    # initialY = $(document).scrollTop() + window.innerHeight/2
+    # initalSection = getCurrentSection(stickySectionsDesktop,initialY)
 
-  #   if window.isNowScrolling
-  #     $('html,body').stop(true,false)
-  #     window.isNowScrolling = false
+    # if window.isNowScrolling
+    #   $('html,body').stop(true,false)
+    #   window.isNowScrolling = false
 
   #   $(document).one 'scrollstop', ->
   #     if !window.isNowScrolling
@@ -150,7 +153,7 @@ $(document).on 'ready', ->
 
   #MATERIALS
   $('#envianos .row').on 'click', ->
-    r = $(@).find('.colors')
+    r = $(@)
     unless r.hasClass 'exploded'
       $(r).addClass 'exploded'
     else

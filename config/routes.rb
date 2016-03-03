@@ -15,11 +15,11 @@ Rails.application.routes.draw do
 
   post '/enviar_contacto' => 'static_pages#enviar_contacto', as: 'enviar_contacto'
 
-  get 'como-funciona' => 'static_pages#envianos', as: 'envianos'
+  # get 'como-funciona' => 'static_pages#envianos', as: 'envianos'
 
   get 'enviar-diseno' => 'static_pages#fabnami', as: 'fabnami'
 
-  get 'para-ti' => 'static_pages#parati', as: 'parati'
+  # get 'para-ti' => 'static_pages#parati', as: 'parati'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

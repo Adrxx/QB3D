@@ -1,5 +1,7 @@
 == TODO
 
-* BG image in normal mode needs to be left or right
-* Fix scss for specificity issues
+* DMAT queries *ALMOST
 * Trello for more...
+
+== MAYBE
+* step_number top fix

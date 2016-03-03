@@ -1,5 +1,6 @@
 // Colors
 $blue-c: #3859A7;
+$skyblue-c: #5685ca;
 $aqua-c: #51DBC3;
 $green-c: #3CAB67;
 $greenmint-c: #59cda6;
@@ -22,14 +23,13 @@ $redorange-c: #E2AE51;
 $greennew-c: #40A17B;
 $greenboldw-c: #6CF26E;
 
-
 // Box Colors
 $green-box-c: #77E854;
 $yellow-box-c: #EFD037;
 
+
 $transparency:0.13;
 $min-section-height:031;
-
 
 body {
   font-weight: 400;
@@ -43,7 +43,7 @@ body {
 
   padding: 6px 20px;
   border: solid 1px $color;
-  color:  $color;
+  color: $color;
 
   display: inline-block;
 
@@ -54,72 +54,190 @@ body {
 
 //SPECIAL MEDIA QUERIES
 @mixin height-more-than($h) {
+
   @media screen and (min-height: $h)
   {
     @content;
   }
+
 }
+
+@mixin peeler-height($mh,$h) {
+  &.parallax-peel-container { min-height: $mh; height:$h; }
+  .scrollable { min-height: $mh; height:$h; }
+  .fixed { min-height: $mh; height:$h; }
+}
+
 
 //=================================
 //-*****    Menú
 //=================================
 
-nav.main-nav
-{
+.main-nav {
   @include display(flex);
   @include justify-content(center);
   @include align-items(center);
 
   position:fixed;
   width: 100%;
-  height: 44px;
+  height: 55px;
   z-index: 100;
+  font-size: 13px;
+  background: rgba(0,0,0,0.46);
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.46)), color-stop(100%, rgba(0,0,0,0)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0) 100%);
+  background: -o-linear-gradient(top, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+
+  @include tablet
+  {
+    height: 65px;
+    font-size: 16px;
+  }
   //background-color: transparentize(white, 0.8);
 
   @include desktop
   {
-    height: 65px;
     background-color:transparent;
   }
 
   &.dark-mode
   {
+    background: transparent;
+
+
     .logo-container .monochrome
     {
       background-image: image-url("logo-dark.png");
     }
-    a
+
+    .links
     {
       color: black;
+    }
+
+    .button
+    {
+      color: black;
+      border-color: black;
+    }
+
+    .menu-button
+    {
+      background-image: image-url("menu-dark.png");
+    }
+
+    .right-wing
+    {
+      background-color: transparentize(white,0.0);
+      @include desktop
+      {
+        background-color: transparent;
+      }
+    }
+
+  }
+
+  .menu-button
+  {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-image: image-url("menu.png");
+
+    @include desktop
+    {
+      display: none;
     }
   }
 
   .left-wing
   {
     width: 100%;
-    a {
-      float:right;
-    }
+
     //background-color: red;
   }
 
   .right-wing
   {
     width: 100%;
+    height: auto;
+    z-index: -1;
+    background-color: transparentize($gray-c,0.0);
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+    position: fixed;
+    left: 0px;
+    padding-top: 50px;
+    top: -100%;
+          padding-right: 0px;
+
+
+    @include transition-duration(0.3s);
+    @include transition-property(top);
+
+    &.exploded
+    {
+      top: 0px;
+    }
+
+    @include desktop
+    {
+          padding-right: 60px;
+
+      position: static;
+      box-shadow: initial;
+      padding-top: 0px;
+      background-color: transparent;
+    }
+
+
+
   }
 
-  a
+  .links
   {
-    margin: 0 10px;
-    //background-color: blue;
+
+    @include transition-duration(0.3s);
+    @include transition-property(all);
+
+    margin-bottom:  0px;
     text-decoration: none;
     color: white;
+    display:block;
+    text-align: center;
+    padding: 15px 0;
+
+    @include desktop
+    {
+      float: right;
+      display:inline;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
   }
 
 
   .button
   {
     @include main-button-style(white);
+    margin-left: 18px;
+    margin-bottom: 0px;
+    padding: 5px 10px;
+
+
+    @include tablet
+    {
+      margin-left: 30px;
+      padding: 6px 20px;
+    }
+
   }
 
   .logo-container
@@ -175,199 +293,97 @@ nav.main-nav
 
 }
 
+
 //=================================
-//-*****    Impresión 3d
+//-*****    Buenas Ideas
 //=================================
 
-$number-width: 80px;
+#buenas-ideas
+{
 
+  @include peeler-height(inital,100vh);
+  overflow: hidden;
 
-@mixin section-configuration($align,$color,$highlight,$image) {
-
-  $opposite: if($align == right, left, right );
-
-  background-color: $color;
-  .image
+  .header
   {
     position: absolute;
     width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 700px;
-
-    background-image: image-url($image);
-    background-color: $color;
-
-    left: if($align == right, -50%, 50% );
-
-    @include phablet
-    {
-      left: 0px;
-      right: 0px;
-      background-size: 600px;
-    }
-
-    @include desktop
-    {
-      background-size: cover;
-      height: 83%;
-      width: 60%;
-      top: 53%;
-      left: 50%;
-      opacity: 1.0;
-      box-shadow: 0px 1px 20px transparentize(black, 0.5);
-      @include transform(translate(-50%, -50%));
-    }
-
-   }
-  .title { text-align: $align; }
-  .description { text-align: $opposite; }
-  .step-number {
-
-    color: $highlight;
-    text-align: $align;
-
-    @if ($align == right) {
-      left: 80%;
-      margin-left: -($number-width/2 - 12);
-    }
-    @else
-    {
-      left: 20%;
-      margin-left: -($number-width/2 + 12);
-    }
-
-   }
-  .subtitle { color: $highlight; text-align: $align; }
-  .details {
-
-    position: relative;
-    font-size: 1.1em;
-    margin-bottom: 30px;
-
-    height: auto;
-    width: 100%;
-
-    text-align: $opposite;
-
-    @include height-more-than(481px) {
-
-      position: absolute;
-      bottom: 5%;
-      overflow: hidden;
-      border-radius: 4px;
-      margin-left:10%;
-      width: 80%;
-      @include phablet
-      {
-        //Aligned to bottom
-        position: absolute;
-        bottom: 5%;
-        overflow: hidden;
-        border-radius: 4px;
-        margin-left:10%;
-        width: 80%;
-      }
-    }
-
-    @include desktop
-    {
-      //Aligned to bottom
-      position: absolute;
-      bottom: 5%;
-      overflow: hidden;
-      border-radius: 4px;
-      margin-left:10%;
-      width: 80%;
-    }
-
-
-
-  }
-  .color_word { color: $highlight; }
-
-}
-
-//Para casos específicos de sección
-#imagina {
-  @include section-configuration(left,$blue-c,$aqua-c,"imagina.png");
-}
-#envianos {
-  @include section-configuration(right,$green-c,$greenlight-c,"envianos.png");
-
-  .row
-  {
-    height: auto;
-    width: 100%;
-    background-color: $greenlight-c;
-    color: $gray-c;
-    line-height: 50px;
-    //padding-left:20px;
-    font-size: 1.2em;
+    top: 130px;
+    z-index: 5;
     font-weight: 600;
+    font-size: 2em;
 
-    &:before
-    {
-      display: inline-block;
-      margin-left: 17px;
-      margin-bottom: 3px;
-      content: "";
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 5px 5px 0 5px;
-      border-color: $greennew-c transparent $greennew-c transparent;
-
-    }
-
-    &:not(.row:last-child)
-    {
-      border-bottom: 1px solid darken($greenlight-c,40%);
-    }
-
-    &:hover
-    {
-      background-color: lighten($greenlight-c, 10%);
-    }
+    color: $gray-c;
+    text-align: center;
 
     span
     {
-      font-weight: 500;
-      margin-left: 6px;
-      font-size: 0.8em;
+      color: $skyblue-c;
     }
 
-    .colors
+    @include desktop
     {
-      height: 0px;
-      width: 100%;
-      @include display(flex);
-      @include justify-content(center);
-      @include align-items(center);
+      right: 20%;
+      top: 180px;
+      text-align: right;
+      font-size:3em;
 
-      @include transition-duration(0.3s);
-      @include transition-property(height);
 
-      &.exploded {
-        height: 20px;
-      }
+    }
 
-      div {
-        height: 100%;
-        @include flex(1);
+    @include desktop-hd
+    {
+      font-size:4em;
+    }
 
-      }
+  }
+
+  .scrollable
+  {
+    width: 100%;
+  }
+  .shape
+  {
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    .shadow
+    {
+      fill: white;
+      fill-opacity: 0.3;
+    }
+    .polygon
+    {
+      fill: white;
     }
   }
+
+  .banner
+  {
+    position: absolute;
+    //background-color: $skyblue-c;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    color: $skyblue-c;
+    bottom: 14%;
+    left: 11%;
+    z-index: 10;
+
+  }
+
+
 }
-#recibe
-{
-  @include section-configuration(left,$golden-c,$darkyellow-c,"recibe.png");
-}
 
 
 
+//=================================
+//-*****    Impresión 3d
+//=================================
 
 $min-desktop-height: 600px;
 .parallax-peel-container
@@ -375,6 +391,17 @@ $min-desktop-height: 600px;
   position: relative;
   width: 100%;
   overflow-x: hidden;
+
+
+  .shadow
+  {
+    position:absolute;
+    width: 100%;
+    top: -20px;
+    height: 20px;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+  }
 
   @include desktop
   {
@@ -386,21 +413,34 @@ $min-desktop-height: 600px;
 
 .scrollable
 {
-  position: relative;
-  width: 80%;
-  margin: 0 auto;
-  height: 100%;
-  min-height: 100vh;
 
   // @include height-more-than(700px)
   // {
   //   min-height: initial;
   //   max-height: 700px;
   // }
+  //
 
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 100vh;
+  font-size: 14px;
+
+  @include phablet
+  {
+    font-size: 15px;
+  }
+
+  @include tablet
+  {
+    font-size: 16px;
+  }
 
   @include desktop
   {
+    font-size: 16px;
     position: absolute;
     max-height: initial;
     height: 100vh;
@@ -409,56 +449,40 @@ $min-desktop-height: 600px;
     clip: rect(0, auto, auto, 0);
   }
 
-}
-
-  .fixed
+  @include desktop-hd
   {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    font-size: 16px;
+  }
 
-    @include desktop
-    {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      min-height: $min-desktop-height;
-
-
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-    }
+  @include big-af
+  {
+    font-size: 18px;
   }
 
 
 
-.step-number
+}
+
+.fixed
 {
-  position:absolute;
-  z-index: 1;
-  $number-height: 80px;
-  height: $number-height;
-  width: $number-width;
-  top: 100px;
-
-
-
-  text-align: center;
-  font-size: 5em;
-  font-weight: 600;
-  line-height: $number-height;
-
-  //background-color: black;
-  color: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 
   @include desktop
   {
-    top: 15%;
-    z-index: 0;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    min-height: $min-desktop-height;
+
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }
 
@@ -468,7 +492,6 @@ $min-desktop-height: 600px;
   width: 100%;
   text-shadow: 0px 1px 6px transparentize(black, 0.6);
   padding: 15vh 0;
-  font-size: 13px;
 
   @include desktop
   {
@@ -479,30 +502,6 @@ $min-desktop-height: 600px;
   }
 }
 
-.description
-{
-  text-align: right;
-  font-size: 1.2em;
-  a {
-    font-size: 0.9em;
-    @include main-button-style($darkyellow-c);
-    margin-top: 20px;
-  }
-  //background-color:skyblue;
-}
-
-.title
-{
-  margin-top:55px;
-  font-size: 2.7em;
-  //background-color:aqua;
-}
-
-.subtitle
-{
-  font-size: 1.5em;
-}
-
 
 
 .universidades
@@ -510,7 +509,7 @@ $min-desktop-height: 600px;
   text-align: center;
   text-shadow: none;
 
-  padding: 30px;
+  padding: 20px;
   font-size: 0.8em;
   color: $gray-c;
   background-color: transparentize($yellow-box-c, 0.25);
@@ -523,6 +522,7 @@ $min-desktop-height: 600px;
   span
   {
     font-weight: 600;
+    font-size: 1.2em;
 
     &:after
     {
@@ -542,33 +542,262 @@ $min-desktop-height: 600px;
   }
 }
 
+@mixin section-configuration($align,$color,$highlight,$image) {
+
+  $opposite: if($align == right, left, right);
+
+  background-color: $color;
+  .image
+  {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    background-image: image-url($image);
+    background-color: $color;
+
+    left: if($align == right, -15%, 15% );
+
+    @include phablet
+    {
+      left: 0px;
+      right: 0px;
+
+    }
+
+    @include desktop
+    {
+      height: 83%;
+      width: 60%;
+      top: 53%;
+      left: 50%;
+      opacity: 1.0;
+      box-shadow: 0px 1px 20px transparentize(black, 0.5);
+      @include transform(translate(-50%, -50%));
+    }
+
+   }
+
+  .title {
+    text-align: $align;
+    margin-top:55px;
+    font-size: 2.7em;
+  }
+
+  .description {
+    text-align: $opposite;
+    font-size: 1.2em;
+    a {
+      font-size: 0.9em;
+      @include main-button-style($darkyellow-c);
+      margin-top: 20px;
+    }
+  }
+
+  .step-number {
+
+    position:absolute;
+    z-index: 1;
+    $number-height: 80px;
+    $number-width: 80px;
+    height: $number-height;
+    width: $number-width;
+    top: 100px;
+    font-size: 5em;
+    font-weight: 600;
+    line-height: $number-height;
+    color: white;
+
+    color: $highlight;
+    text-align: $align;
+
+    @if ($align == right) {
+      left: 80%;
+      margin-left: -($number-width/2 - 12);
+    }
+    @else
+    {
+      left: 20%;
+      margin-left: -($number-width/2 + 12);
+    }
+
+    @include desktop
+    {
+      top: 15%;
+      z-index: 0;
+    }
+
+   }
+  .subtitle {
+    color: $highlight;
+    text-align: $align;
+    font-size: 1.5em;
+   }
+  .details {
+
+    position: relative;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    height: auto;
+    width: 100%;
+    text-align: $opposite;
+
+    @include height-more-than(601px) {
+
+      position: absolute;
+      bottom: 5%;
+      margin-left:10%;
+      width: 80%;
+
+      @include phablet
+      {
+        //Aligned to bottom
+        position: absolute;
+        bottom: 5%;
+        margin-left:10%;
+        width: 80%;
+      }
+    }
+
+    @include desktop
+    {
+      //Aligned to bottom
+      position: absolute;
+      bottom: 5%;
+      margin-left:10%;
+      width: 80%;
+    }
+
+  }
+
+  .color_word { color: $highlight; }
+
+}
+
+//Para casos específicos de sección
+#imagina {
+  @include section-configuration(left,$blue-c,$aqua-c,"imagina.png");
+}
+#envianos {
+  @include section-configuration(right,$green-c,$greenlight-c,"envianos.png");
+
+  .materiales
+  {
+    font-size: 0.95em;
+    box-shadow: 0px 1px 6px transparentize(black, 0.6);
+
+    @include desktop
+    {
+      font-size: 0.8em;
+      display: inline-block;
+    }
+  }
+
+  .row
+  {
+    height: auto;
+    width: 100%;
+    background-color: $greenlight-c;
+    color: $gray-c;
+    font-weight: 600;
+    line-height: 44px;
+
+    &:before
+    {
+      display: inline-block;
+      content: "";
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-color: transparent transparent transparent $greennew-c;
+      margin-right: 5px;
+      margin-left: 17px;
+    }
+
+    &.exploded {
+      .colors { height: 20px; }
+      &:before
+      {
+        margin-bottom: 3px;
+        margin-right: 0px;
+        border-width: 5px 5px 0 5px;
+        border-color: $greennew-c transparent $greennew-c transparent;
+      }
+    }
+
+
+    &:not(.row:last-child)
+    {
+      border-bottom: 1px solid darken($greenlight-c,40%);
+    }
+
+    &:hover
+    {
+      background-color: lighten($greenlight-c, 10%);
+    }
+
+    span
+    {
+      font-weight: 500;
+      margin-left: 6px;
+      margin-right:20px;
+      font-size: 0.9em;
+    }
+
+    .colors
+    {
+      height: 0px;
+      width: 100%;
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+      @include transition-duration(0.3s);
+      @include transition-property(height);
+
+      div {
+        height: 100%;
+        @include flex(1);
+      }
+    }
+
+  }
+}
+
+#recibe
+{
+  @include section-configuration(left,$golden-c,$darkyellow-c,"recibe.png");
+}
+
 
 //=================================
 //-*****    Para ti
 //=================================
 
-%ra-block
-{
-  .title { text-align:right; }
-  .description { text-align:right; }
-  &>.title:before { background-position: right; }
+@mixin block-alignment($align,$pixels) {
+  .title { text-align:$align; }
+  .description { text-align:$align; }
+  &>.title:before { background-position: $align; }
+  #{if($pixels > 0, right, left)}: abs($pixels);
+  #{if($pixels <= 0, right, left)}: initial;
 }
 
 #DMAT
 {
   position:relative;
   width: 100%;
-  //min-height: 950px;
   z-index: 10;
   height: auto;
   background-color:$purple-c;
-  background: tomato;
+
+  padding-bottom: 40px;
 
   @include desktop
   {
+    padding-bottom: 0;
     display:block;
     height: 0px;
-
   }
 
   &:before
@@ -583,7 +812,7 @@ $min-desktop-height: 600px;
     content: "";
     position:absolute;
     width: 100%;
-    height: calc(1646px - 57.93vw);
+    height: calc(1666px - 57.93vw);
     top: 0px;
     box-shadow: 0px 1px 20px transparentize(black, 0.5);
 
@@ -599,23 +828,40 @@ $min-desktop-height: 600px;
 
   .block
   {
-    //position:relative;
-    background-color:red;
     display: block;
+    //background-color: red;
+    padding: 30px 35px;
+    font-size: 14px;
+    @include block-alignment(center,0px);
+
+    @include phablet {
+      padding: 20px 65px;
+
+    }
+
+    @include tablet {
+      font-size: 17px;
+      padding: 50px 105px;
+    }
+
+    @include desktop {
+      padding: 0px;
+      font-size: 19px;
+    }
+
+
 
     .title
     {
       margin: 0px;
-      font-size: 2.4em;
+      font-size: 2em;
       color: $purpleboldw-c;
-      text-align: left;
     }
 
     .description
     {
-      font-size: 1.4em;
+      font-size: 1.2em;
       width: 100%;
-      text-align: left;
     }
 
     &>.title:before
@@ -628,8 +874,12 @@ $min-desktop-height: 600px;
       width: 100%;
       margin: 0 auto;
       background-repeat: no-repeat;
-      background-position: left;
       background-size: contain;
+
+      @include phablet
+      {
+        height: 80px;
+      }
     }
 
     $list: "disenador.png" "maker.png" "artista.png" "todos.png";
@@ -639,101 +889,204 @@ $min-desktop-height: 600px;
       &:nth-child(#{$i})
       {
 
-        //CALCULATED ATTRIBUTES
-        @include desktop
-        {
-          top: calc( #{$i * 250px + 80px} - 57.93vw ) ;
-          position: absolute;
-          width: 300px + (40px * $i);
-        }
-
         &>.title:before
         {
           background-image: image-url('#{nth($list,$i)}');
         }
 
+        //CALCULATED ATTRIBUTES
+        @include desktop
+        {
+          $offset: if($i > 2, 100px, 80px);
+          top: calc( #{$i * 250px + $offset} - 57.93vw ) ;
+          position: absolute;
+          width: 300px;
+        }
+
 
         // SPECIFIC BY INDEX
         @if $i == 1 {
-          @extend %ra-block;
-          right: 80px;
+
+          @include desktop
+          {
+            @include block-alignment(right,80px);
+          }
+
+          @include desktop-hd
+          {
+            @include block-alignment(right,130px);
+          }
+
+          @include big-af
+          {
+            @include block-alignment(center,130px);
+          }
 
         } @else if $i == 2 {
 
-          right: 430px;
+          @include desktop
+          {
+            @include block-alignment(left,-80px);
+          }
+
+          @include desktop-hd
+          {
+            @include block-alignment(left,580px);
+          }
+
           @include big-af
           {
-            right: 530px;
+            @include block-alignment(center,580px);
           }
 
         } @else if $i == 3 {
-          @extend %ra-block;
-          left: 480px;
+
+          @include desktop
+          {
+            @include block-alignment(right,80px);
+          }
+
+          @include desktop-hd
+          {
+            @include block-alignment(right,-580px);
+          }
+
           @include big-af
           {
-            left: 550px;
+            @include block-alignment(center,-580px);
           }
 
         } @else {
 
-          left: 50px;
+          @include desktop
+          {
+            @include block-alignment(left,-80px);
+          }
+
+          @include desktop-hd
+          {
+            @include block-alignment(left,-130px);
+          }
+
           @include big-af
           {
-            left: 60px;
+            @include block-alignment(center,-130px);
           }
 
         }
-
-
       }
+
+
     } //FOR
-
-
-  }
+  }//BLOCK
 }
 
 #posibilidades
 {
-  background-color: $stateblue-c;
+  background-color: $purple-c;
+  text-align: center;
 
-  @include desktop
-  {
-    height: 100vh;
+  @include peeler-height(initial,auto);
+
+  .fixed {
+    position: relative;
+   }
+
+  @include desktop {
+
+    background-color: $stateblue-c;
+
+    @include peeler-height(initial,600px);
+    .fixed {
+      position: fixed;
+
+     }
+  }
+
+  @include big-af {
+    @include peeler-height(initial,100vh);
   }
 
   .text
   {
-    display: inline-block;
-    position:relative;
-    top:20%;
-    left: 10%;
-    //background-color: cyan;
-    text-align: right;
-    font-size: 3em;
+    padding: 40px 0px;
+    font-size: 30px;
+
+    &:after
+    {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 45px;
+      background-color: $purpleboldw-c;
+      //@include transition-delay(0.2s);
+    }
+
+    @include desktop {
+
+      &:after { display: none; }
+      display: inline-block;
+      position:absolute;
+      font-size: 45px;
+      padding:0px;
+      top:20%;
+      left: 10%;
+      width: 400px;
+      text-align: left;
+    }
   }
+
   span { color: $stateblueboldw-c; }
 }
 
 #tienda
 {
   background-color: $red-c;
-  min-height: 1400px;
+
+  @include peeler-height(initial,auto);
+
+  .fixed {
+    position: relative;
+   }
+
+  @include desktop {
+    @include peeler-height(initial,calc(1600px - 7.93vw));
+
+    .fixed {
+      position: fixed;
+
+     }
+  }
+
+
   .button
   {
     @include main-button-style($redorange-c);
     font-size: 0.7em;
     margin-top: 10px;
   }
+
   .text
   {
     display: inline-block;
     position:relative;
-    top:25%;
-    float:right;
-    right: 10%;
-    text-align: right;
+    padding: 40px 0px;
     //background-color:purple;
+
     font-size: 1.5em;
+
+    @include desktop
+    {
+      padding: 0;
+      text-align: right;
+      right: 10%;
+      top:100px;
+      float:right;
+
+    }
+
     span
     {
       font-size: 1.8em;
@@ -747,30 +1100,25 @@ $min-desktop-height: 600px;
     position: absolute;
     overflow: hidden;
     width: 100%;
-    height: 500px;
+    height: 250px;
     bottom: 0px;
     pointer-events: none;
+    font-size: 1.3em;
+    background-color: red;
 
-    .shape {
-      position: absolute;
-    background-color: $tomato-c;
-    width: 100%;
-    height: 500px;
-    box-shadow: 0px 1px 20px transparentize(black, 0.5);
-    @include transform(skewY(20deg));
-    @include transform-origin(top left);
-    }
-
-    .announcement
+    .image
     {
-      display: inline-block;
-      position:absolute;
-      z-index: 30;
-      //background-color:red;
-      bottom: 100px;
-      left: 10%;
-      max-width: 80%;
-      font-size: 1.3em;
+
+      height:100%;
+      width:50%;
+      position: relative;
+      background-size: contain;
+      background-position: right;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      background-image: image-url("imagina.png");
+      background-color: orange;
+
     }
 
     .title
@@ -799,6 +1147,11 @@ $min-desktop-height: 600px;
         }
     }
 
+    .long-text
+    {
+      font-size: 0.8em;
+    }
+
 
   }
 
@@ -808,16 +1161,6 @@ $min-desktop-height: 600px;
 {
   background-color: $greennew-c;
 
-  .shadow
-  {
-    position:absolute;
-    width: 100%;
-    top: -20px;
-    height: 20px;
-    background-color: red;
-    box-shadow: 0px 1px 20px transparentize(black, 0.5);
-
-  }
   .text
   {
     display: inline-block;
