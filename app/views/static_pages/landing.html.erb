@@ -177,9 +177,9 @@
           <div class="long-text">
             <%= announcement.description %>
           </div>
-          <%# if announcement.link_name.present? %>
-            <%#= link_to announcement.link_name, url_for(announcement.link_url), class:'button' %>
-          <%# end %>
+          <% if announcement.link_name.present? %>
+            <%= link_to announcement.link_name, url_for(announcement.link_url), class:'button' %>
+          <% end %>
 
         </div>
       </div>
@@ -201,7 +201,7 @@
     <div class="contact-form">
       <div class="shape"></div>
       <div class="square">
-        <%= render "contacto" %>
+        <%= render "contact_sheet" %>
       </div>
     </div>
 

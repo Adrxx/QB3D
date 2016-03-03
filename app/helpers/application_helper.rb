@@ -3,15 +3,22 @@ module ApplicationHelper
     str = ''
     str += form.text_field(name, class: 'campo', placeholder: placeholder)
     str += error_if_exists(form.object,name)
-    str.html_safe      
+    str.html_safe
   end
 
-  
+  def full_file_field(form,name)
+    str = ''
+    str += form.file_field(name, accept: "image/x-png, image/gif, image/jpeg", class: 'mnt-pm-file-input')
+    str += error_if_exists(form.object,name)
+    str.html_safe
+  end
+
+
   def full_text_qb(form,name,placeholder)
     str = ''
     str += form.text_area(name, class: 'campo area', placeholder: placeholder)
     str += error_if_exists(form.object,name)
-    str.html_safe      
+    str.html_safe
   end
 
   def error_if_exists(object,name)

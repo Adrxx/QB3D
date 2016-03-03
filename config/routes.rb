@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   root 'static_pages#landing'
 
-  post '/enviar_contacto' => 'static_pages#enviar_contacto', as: 'enviar_contacto'
-
   # get 'como-funciona' => 'static_pages#envianos', as: 'envianos'
 
   get 'enviar-diseno' => 'static_pages#fabnami', as: 'fabnami'

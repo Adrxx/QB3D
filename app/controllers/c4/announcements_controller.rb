@@ -52,8 +52,8 @@ module C4
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def announcement_params
-        params.require(:announcement).permit(:title, :description, :featured)
+        params.require(:announcement).permit(:title, :description, :featured, :link_name, :link_url, :photo_file)
       end
-      
+
   end
 end

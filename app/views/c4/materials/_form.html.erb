@@ -1,4 +1,6 @@
 <%# Form fields %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
 <%= form_for(@material,  :url => (@material.new_record? ? main_app.materials_path : main_app.material_path(@material.id)), :html => { :multipart => true }) do |f| %>
   <% if @material.errors.any? %>
     <div class="error-explanation-header">
@@ -11,37 +13,37 @@
 
 <%# Name %>
 <div class="row">
-  
-    <%= full_field(f,:name, 'Name' ,'Name...') %>
-  
+
+    <%= full_field(f,:name, 'Nombre' ,'Nombre...') %>
+
 </div>
 
 
 
 <%# Price %>
 <div class="row">
-  
-    <%= full_field(f,:price, 'Price' ,'Price...') %>
-  
+
+    <%= full_field(f,:price, 'Precio' ,'Precio...') %>
+
 </div>
 
 
 
 <%# Available %>
 <div class="row">
-  
+
     <%= f.label :available, class:'field-options-wrapper' do %>
         <%= f.check_box :available %>Available
     <% end %>
-  
+
 </div>
 
 <hr>
 <%# Colors %>
 <div class="row">
-  
+
   <%= link_to_add_association "Agregar color", f ,:colors, :'data-association-insertion-node' => '.insertion-node',:'data-association-insertion-method' => 'append',  class: 'c4-button-secondary u-full-width'  %>
-  
+
 </div>
 
 

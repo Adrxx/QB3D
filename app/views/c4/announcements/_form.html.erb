@@ -12,7 +12,7 @@
 <%# Title %>
 <div class="row">
 
-    <%= full_field(f,:title, 'Title' ,'Title...') %>
+    <%= full_field(f,:title, 'Título' ,'Título...') %>
 
 </div>
 
@@ -21,9 +21,31 @@
 <%# Description %>
 <div class="row">
 
-    <%= full_text_area(f,:description, 'Description' ,'Description...') %>
+    <%= full_text_area(f,:description, 'Descripción' ,'Descripción...') %>
 
 </div>
+
+<%# Link Name %>
+<div class="row">
+
+    <%= full_field(f,:link_name, 'Nombre de botón' ,'Ir ahora...') %>
+
+</div>
+<%# Link %>
+<div class="row">
+
+    <%= full_text_area(f,:link_url, 'Link url' ,'httl://google.com ...') %>
+
+</div>
+<%# File %>
+
+<div class="row">
+
+    <%= f.file_field(:photo_file, accept: "image/x-png, image/gif, image/jpeg", class: 'mnt-pm-file-input') %>
+
+</div>
+
+
 
 
 
@@ -31,7 +53,7 @@
 <div class="row">
 
     <%= f.label :featured, class:'field-options-wrapper' do %>
-        <%= f.check_box :featured %>Featured
+        <%= f.check_box :featured %>Mostrar en la página principal
     <% end %>
 
 </div>

@@ -1113,7 +1113,6 @@ $min-desktop-height: 600px;
     overflow: hidden;
     width: 100%;
     bottom: 0px;
-    pointer-events: none;
     font-size: 1.3em;
 
     background-color: $tomato-c;
@@ -1325,6 +1324,10 @@ $min-desktop-height: 600px;
 
     margin: 20px 0;
     padding: 20px 0px;
+    label
+    {
+      display: none;
+    }
     @include desktop
     {
       background-color: transparent;
@@ -1385,45 +1388,45 @@ $min-desktop-height: 600px;
     .error-message {
       text-align: center;
       color: $tomato-c;
-  //background-color: transparentize($greennew-c, 0.5);
-  //border:solid 1px $greenlight-c;
-  border-top: none;
-  padding: 2px;
-  margin-top: -14px;
-  margin-bottom:10px;
-}
+      //background-color: transparentize($greennew-c, 0.5);
+      //border:solid 1px $greenlight-c;
+      border-top: none;
+      padding: 2px;
+      margin-top: -14px;
+      margin-bottom:10px;
+    }
 
 
 
-.titulo
-{
-  font-size: 1.5em;
-}
+    .titulo
+    {
+      font-size: 1.5em;
+    }
 
-.campo
-{
-  @include appearance(none);
-  display: block;
-  border-radius: 5px;
-  width: 80%;
-  margin: 17px auto;
-  padding: 12px 12px;
-  background-color: transparentize(white, 0.7);
-  border: 1px solid transparentize(white, 1);
-  color: $gray-c;
-}
+    .campo
+    {
+      @include appearance(none);
+      display: block;
+      border-radius: 5px;
+      margin: 17px auto;
+      padding: 12px 12px;
+      background-color: transparentize(white, 0.7);
+      border: 1px solid transparentize(white, 1);
+      color: $gray-c;
 
-.boton
-{
-  @include main-button-style(darken($greennew-c,12%));
-  display: block;
-  font-size: 20px;
-  background-color: transparent;
-  width: 80%;
-  margin: 5px auto;
-}
-}
+    }
 
+      .boton
+      {
+        @include main-button-style(darken($greennew-c,12%));
+        display: block;
+        font-size: 20px;
+        background-color: transparent;
+        width: 100%;
+        margin: 5px auto;
+      }
+
+    }
 
 
 }

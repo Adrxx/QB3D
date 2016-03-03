@@ -17,3 +17,4 @@
 //= require smoothScroll.js
 //= require static_pages.js
 //= require c4/c4
+//= require cocoon
