@@ -135,7 +135,6 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pg (0.18.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -222,7 +221,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mail_form (~> 1.5.1)
-  pg
   rails (= 4.2.4)
   sass-rails
   sdoc (~> 0.4.0)
@@ -233,4 +231,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.4
+   1.11.2
