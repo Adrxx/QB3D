@@ -54,6 +54,6 @@ module C4
       def announcement_params
         params.require(:announcement).permit(:title, :description, :featured)
       end
-      
+
   end
 end
