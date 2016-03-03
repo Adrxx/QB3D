@@ -21,6 +21,7 @@ $purpleboldw-c: #392B51;
 $red-c: #C1484C;
 $redorange-c: #E2AE51;
 $greennew-c: #40A17B;
+$mint-c: #5bfaad;
 $greenboldw-c: #6CF26E;
 
 // Box Colors
@@ -175,7 +176,7 @@ body {
     left: 0px;
     padding-top: 50px;
     top: -100%;
-          padding-right: 0px;
+    padding-right: 0px;
 
 
     @include transition-duration(0.3s);
@@ -188,7 +189,8 @@ body {
 
     @include desktop
     {
-          padding-right: 60px;
+      padding-right: 60px;
+      text-align: right;
 
       position: static;
       box-shadow: initial;
@@ -215,7 +217,6 @@ body {
 
     @include desktop
     {
-      float: right;
       display:inline;
       margin-left: 10px;
       margin-right: 10px;
@@ -579,7 +580,7 @@ $min-desktop-height: 600px;
       @include transform(translate(-50%, -50%));
     }
 
-   }
+  }
 
   .title {
     text-align: $align;
@@ -630,12 +631,12 @@ $min-desktop-height: 600px;
       z-index: 0;
     }
 
-   }
+  }
   .subtitle {
     color: $highlight;
     text-align: $align;
     font-size: 1.5em;
-   }
+  }
   .details {
 
     position: relative;
@@ -990,7 +991,7 @@ $min-desktop-height: 600px;
 
   .fixed {
     position: relative;
-   }
+  }
 
   @include desktop {
 
@@ -1000,7 +1001,7 @@ $min-desktop-height: 600px;
     .fixed {
       position: fixed;
 
-     }
+    }
   }
 
   @include big-af {
@@ -1044,20 +1045,29 @@ $min-desktop-height: 600px;
 #tienda
 {
   background-color: $red-c;
+  #anchortienda
+  {
+    @include desktop
+    {
+      position: absolute;
+      bottom: 100vh
+    }
+
+  }
 
   @include peeler-height(initial,auto);
 
   .fixed {
     position: relative;
-   }
+  }
 
   @include desktop {
-    @include peeler-height(initial,calc(1600px - 7.93vw));
+    @include peeler-height(initial,calc(1666px - 57.93vw + 50vh));
 
     .fixed {
       position: fixed;
 
-     }
+    }
   }
 
 
@@ -1073,16 +1083,19 @@ $min-desktop-height: 600px;
     display: inline-block;
     position:relative;
     padding: 40px 0px;
+    text-align: center;
+    width: 100%;
     //background-color:purple;
 
     font-size: 1.5em;
 
     @include desktop
     {
+      width: initial;
       padding: 0;
       text-align: right;
       right: 10%;
-      top:100px;
+      top:200px;
       float:right;
 
     }
@@ -1097,27 +1110,51 @@ $min-desktop-height: 600px;
 
   .announcements
   {
-    position: absolute;
     overflow: hidden;
     width: 100%;
-    height: 250px;
     bottom: 0px;
     pointer-events: none;
     font-size: 1.3em;
-    background-color: red;
+
+    background-color: $tomato-c;
+    box-shadow: 0px 1px 20px transparentize(black, 0.5);
+    margin-bottom: 40px;
+    @include desktop
+    {
+      position: absolute;
+      margin-bottom: 0px;
+
+    }
 
     .image
     {
 
-      height:100%;
-      width:50%;
-      position: relative;
-      background-size: contain;
-      background-position: right;
+      height: 250px;
+      width: auto;
+
+      background-size: cover;
+      background-position: center;
       background-repeat: no-repeat;
       background-color: transparent;
       background-image: image-url("imagina.png");
-      background-color: orange;
+
+      @include desktop
+      {
+        height:100%;
+        width: 40%;
+        right: 0px;
+        position: absolute;
+      }
+
+    }
+
+    .ann
+    {
+      width: 60%;
+      height: 100%;
+      left: 0px;
+
+      padding: 35px;
 
     }
 
@@ -1134,131 +1171,220 @@ $min-desktop-height: 600px;
 
       //margin-left: 10px;
       &:after
-        {
-          content: '';
-          display: block;
-          position: relative;
-          height: 1px;
-          margin: 6px 0;
-          left: 0;
-          width: 100%;
-          background-color: transparentize($redorange-c, 0.4);
+      {
+        content: '';
+        display: block;
+        position: relative;
+        height: 1px;
+        margin: 6px 0;
+        left: 0;
+        width: 100%;
+        background-color: transparentize($redorange-c, 0.4);
           //@include transition-delay(0.2s);
         }
-    }
+      }
 
-    .long-text
-    {
-      font-size: 0.8em;
-    }
+      .long-text
+      {
+        font-size: 0.8em;
+      }
 
+
+    }
 
   }
 
-}
-
-#contactanos
-{
-  background-color: $greennew-c;
-
-  .text
+  #contactanos
   {
-    display: inline-block;
-    position:relative;
-    top:13%;
-    left: 10%;
-    text-align: left;
-    //background-color: orange;
-    font-size: 1.5em;
-    span
-    {
-      font-size: 1.8em;
-      color: $greenboldw-c;
-      //font-size: 3em;
+    background-color: $greennew-c;
+
+    @include peeler-height(initial,auto);
+    .fixed {
+      position: relative;
     }
+
+    @include desktop {
+      @include peeler-height(500px,100vh);
+      .fixed {
+        position: fixed;
+      }
+      .scrollable
+      {
+        overflow: hidden;
+      }
+    }
+
+
+
+    .text
+    {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 40px 0px;
+
+    //background-color: orange;
+      font-size: 1.5em;
+      span
+      {
+        font-size: 1.8em;
+        color: $greenboldw-c;
+        //font-size: 3em;
+      }
+
+      @include desktop
+      {
+        padding: 0px;
+        text-align: left;
+          position:relative;
+        top:13%;
+        left: 10%;
+        width: 400px;
+      }
   }
 
   .contact-info
   {
-        position: absolute;
     overflow: hidden;
     width: 100%;
-    height: 500px;
     bottom: 0px;
-
-    .shape {
-      position: absolute;
-      top:30px;
-    background-color: $greenmint-c;
-    width: 100%;
-    height: 500px;
     box-shadow: 0px 1px 20px transparentize(black, 0.5);
-    @include transform(skewY(10deg));
-    @include transform-origin(top left);
+    padding: 0px;
+    background-color: $greenmint-c;
+      text-align: center;
+
+
+    @include desktop
+    {
+      text-align: left;
+      position: absolute;
+      padding-bottom: 40px;
+      @include transform(skewY(6deg));
+      @include transform-origin(bottom left);
+
     }
 
-    .square
+
+    .c4-contact-data
     {
-      position:absolute;
-      width: 45%;
-      height: 60%;
-      bottom: 40px;
-      left: 40px;
-      //background-color: red;
+      bottom: 0px;
+      padding: 20px 0;
+
+      @include desktop
+      {
+          padding: 80px 40px;
+         @include transform(skewY(-6deg));
+
+      }
+
+      @include desktop-hd
+      {
+        padding: 80px 40px;
+      }
+    }
+    *
+    {
+      margin-bottom: 10px;
     }
 
-    .field
+    .data-title
     {
-      height: 100%;
-      width: 100%;
-      background-image: image-url("cont.png");
-      background-position: center;
-      background-size: 90% auto;
-      background-repeat: no-repeat;
+      color: $mint-c;
+      padding: 0px;
+      @include desktop
+      {
+        padding-left: 25px;
+      }
     }
+
+    span
+    {
+      color: white;
+      margin-left: 10px;
+
+    }
+    a {
+      color: white;
+      margin-left: 0px;
+      @include desktop
+      {
+        margin-left: 10px;
+      }
+
+    }
+
 
   }
 
   .contact-form
   {
-    position: absolute;
     overflow: hidden;
-    width: 600px;
-    //background-color:blue;
-    height: 100%;
-    bottom: 0px;
-    right: 0px;
+    height: auto;
+      background-color: $greenneon-c;
+          box-shadow: 0px 1px 20px transparentize(black, 0.5);
+
+    margin: 20px 0;
+    padding: 20px 0px;
+    @include desktop
+    {
+      background-color: transparent;
+          box-shadow: initial;
+      margin: 0px;
+      padding: 0px;
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      bottom: 0px;
+      right: 0px;
+    }
+    .error-message
+    {
+      color: red;
+      background-color: transparent;
+      border: none;
+
+    }
 
     .shape {
+      display: none;
       position: absolute;
-    background-color: $greenneon-c;
-    left: 20px;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 1px 20px transparentize(black, 0.5);
-    @include transform(skewX(-10deg));
-    @include transform-origin(bottom left);
+      background-color: $greenneon-c;
+      left: 20px;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0px 1px 20px transparentize(black, 0.5);
+      @include transform(skewX(-10deg));
+      @include transform-origin(bottom left);
+
+      @include desktop
+      {
+        display:block;
+      }
     }
 
     .square
     {
-      position:absolute;
-      width: 60%;
-      right: 40px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-        color: $gray-c;
+
+      color: $gray-c;
       text-align: center;
+      @include desktop
+      {
+        position:absolute;
+        width: 60%;
+        right: 40px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
 
       //background-color: red;
 
     }
 
     .error-message {
-  text-align: center;
-  color: $tomato-c;
+      text-align: center;
+      color: $tomato-c;
   //background-color: transparentize($greennew-c, 0.5);
   //border:solid 1px $greenlight-c;
   border-top: none;
@@ -1269,38 +1395,34 @@ $min-desktop-height: 600px;
 
 
 
-    .titulo
-    {
-      font-size: 1.5em;
-    }
+.titulo
+{
+  font-size: 1.5em;
+}
 
-    .campo
-    {
-      @include appearance(none);
-      display: block;
-      border-radius: 5px;
-      width: 80%;
-      margin: 17px auto;
-      padding: 12px 12px;
-      background-color: transparentize(white, 0.7);
-      border: 1px solid transparentize(white, 1);
-      color: $gray-c;
-      &.area
-      {
-        height: 280px;
-      }
-    }
+.campo
+{
+  @include appearance(none);
+  display: block;
+  border-radius: 5px;
+  width: 80%;
+  margin: 17px auto;
+  padding: 12px 12px;
+  background-color: transparentize(white, 0.7);
+  border: 1px solid transparentize(white, 1);
+  color: $gray-c;
+}
 
-    .boton
-    {
-      @include main-button-style(darken($greennew-c,12%));
-      display: block;
-      font-size: 20px;
-      background-color: transparent;
-      width: 80%;
-      margin: 5px auto;
-    }
-  }
+.boton
+{
+  @include main-button-style(darken($greennew-c,12%));
+  display: block;
+  font-size: 20px;
+  background-color: transparent;
+  width: 80%;
+  margin: 5px auto;
+}
+}
 
 
 

@@ -11,29 +11,29 @@
 
 <%# Title %>
 <div class="row">
-  
+
     <%= full_field(f,:title, 'Title' ,'Title...') %>
-  
+
 </div>
 
 
 
 <%# Description %>
 <div class="row">
-  
+
     <%= full_text_area(f,:description, 'Description' ,'Description...') %>
-  
+
 </div>
 
 
 
 <%# Featured %>
 <div class="row">
-  
+
     <%= f.label :featured, class:'field-options-wrapper' do %>
         <%= f.check_box :featured %>Featured
     <% end %>
-  
+
 </div>
 
 <hr>

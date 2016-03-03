@@ -60,11 +60,9 @@ $(document).on 'ready', ->
   window.deltaY = 0
 
   $('.menu-button').on 'click', ->
-    console.log 'sads'
     target = $(@).parent().find('.right-wing')
     $('.links').one 'click', ->
       $(target).removeClass 'exploded'
-
     if $(target).hasClass 'exploded'
       $(target).removeClass 'exploded'
     else

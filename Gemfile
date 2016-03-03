@@ -6,6 +6,7 @@ gem 'cocoon'
 gem 'simple_form', '~> 3.1.0'
 gem 'mail_form', '~> 1.5.1'
 gem 'pg'
+gem "paperclip", "~> 4.2"
 
 # Bundle edge Rails instead: s', github: 'rails/rails'
 gem 'rails', '4.2.4'

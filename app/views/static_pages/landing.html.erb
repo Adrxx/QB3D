@@ -8,7 +8,7 @@
         Tú imaginas, <strong>nosotros lo hacemos realidad.</strong>
       </div>
       <svg class="shape" preserveAspectRatio="none" viewBox="0 0 10 10">
-      <defs>
+        <defs>
           <filter id="f1" x="0" y="0" width="100%" height="100%">
             <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
             <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.2" />
@@ -67,18 +67,18 @@
     </div>
     <div class="details">
       <div class="materiales">
-      <%# @materials = @materials + @materials + @materials %>
+        <%# @materials = @materials + @materials + @materials %>
         <% @materials.each do |m| %>
-          <% if m.available %>
-          <div class="row">
-              <%= m.name %> <span><%= m.price %></span>
-              <div class="colors">
-                <% m.colors.each do |c| %>
-                  <div style="background-color:#<%= c.hex %>"></div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+        <% if m.available %>
+        <div class="row">
+          <%= m.name %> <span><%= m.price %></span>
+          <div class="colors">
+            <% m.colors.each do |c| %>
+            <div style="background-color:#<%= c.hex %>"></div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -91,7 +91,7 @@
       <div class="step-number">3</div>
       <div class="image"></div>
     </div>
-      <div class="grid">
+    <div class="grid">
       <div class="description sr-left">
         Recíbelo en tu casa o <br>
         <span class="color_word">universidad.</span> <br>
@@ -103,12 +103,12 @@
     </div>
     <div class="details">
       <div class="universidades">
-          <span>Universidades</span>
-          Tec de Monterrey CEM<br>
-          Universidad Iberoamericana<br>
-          UAM Azcapotzalco<br>
-          Tec de Monterrey CSF<br>
-          FES Acatlán
+        <span>Universidades</span>
+        Tec de Monterrey CEM<br>
+        Universidad Iberoamericana<br>
+        UAM Azcapotzalco<br>
+        Tec de Monterrey CSF<br>
+        FES Acatlán
       </div>
     </div>
   </div>
@@ -136,7 +136,7 @@
     <div class="title">Makers</div>
     <div class="description">
       ¿No existe la pieza que necesitas? Imprímela en 3D.
-      </div>
+    </div>
   </div>
   <div class="block sr-neutral">
     <div class="title">Artistas</div>
@@ -154,40 +154,45 @@
 </section>
 <!-- Tienda -->
 <section id="tienda" class="parallax-peel-container">
+  <div id="anchortienda"></div>
   <div class="scrollable">
     <div class="fixed">
       <div class="text">
         <span>Tienda 3D</span><br> Descubre nuevos productos, nuevas <br>soluciones y los mejores regalos.
         <br>
-         <%= link_to 'Ir a la Tienda', url_for("http://tienda.qb3d.com.mx"),class:'button' %>
+        <%= link_to 'Ir a la Tienda', url_for("http://tienda.qb3d.com.mx"),class:'button' %>
       </div>
     </div>
-    <div class="announcements">
-      <% @announcements.each do |announcement| %>
-        <% if announcement.featured %>
-          <div class="image"></div>
+    <% @announcements.each do |announcement| %>
+     <% if announcement.featured %>
+        <div class="announcements">
+        <% if announcement.photo_file.exists? %>
+        <div class="image" style="background-image:url(<%=announcement.photo_file.url(:thumb) %>)"></div>
+          <div class="ann">
+        <% else %>
+          <div class="ann" style="width:100%">
+         <% end %>
           <div class="title"><%= announcement.title %></div>
           <div class="date"><%= announcement.created_at.strftime('%d/%m/%Y')%></div>
           <div class="long-text">
             <%= announcement.description %>
-            hkafjhlkasdjf  hadsgjfkhgasdjhfg kjasdhfg kjsadhgf jkasdhgfsadj<br>
-            sdjfhlaks <br>
-            sdjfhlaks  <br>
-            sdjfhlaks  <br>
-            sadfjhkasd
           </div>
-        <% end %>
+          <%# if announcement.link_name.present? %>
+            <%#= link_to announcement.link_name, url_for(announcement.link_url), class:'button' %>
+          <%# end %>
+
+        </div>
+      </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </section>
 <!-- Contacto -->
 <section id="contactanos" class="parallax-peel-container">
   <div class="scrollable">
-
     <div class="fixed">
       <div class="text">
-        <span>Contáctanos</span><br>Comparte con nosotros tus ideas más<br>frescas, envíanos un saludo o déjanos <br>resolver tus dudas.
+        <span>Contáctanos</span><br>Comparte con nosotros tus ideas más frescas, envíanos un saludo o déjanos resolver tus dudas.
       </div>
     </div>
     <div class="contact-info">
