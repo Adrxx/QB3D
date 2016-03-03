@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205073710) do
+ActiveRecord::Schema.define(version: 20160303094511) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "link_name"
-    t.text     "link_url"
     t.boolean  "featured"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "photo_file_file_name"
     t.string   "photo_file_content_type"
     t.integer  "photo_file_file_size"
     t.datetime "photo_file_updated_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.text     "link_url"
+    t.string   "link_name"
   end
 
   create_table "c4_preferences", force: :cascade do |t|
